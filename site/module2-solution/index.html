@@ -117,24 +117,6 @@ h1 {
   /* float: left; */
 }
 
-/* Simple Responsive Framework. */
-.row {
-  width: 100%;
-  /* float: left; */
-}
-
-.box {
-  /* margin: 10px;
-  background-color: #7E7E7E;
-  border: 1px solid #070707; */
-  /* float: left; */
-  /* clear: right; */
-  /* padding: 20px; */
-  /* float: left; */
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
 /********** Desktop only **********/
 @media (min-width: 992px) {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
@@ -228,6 +210,19 @@ h1 {
 /********** Mobile devices only **********/
 @media (max-width: 767px) {
 
+  h1 {
+    visibility: hidden;
+    text-align: left;
+  }
+  h1:after {
+    content: 'Catagories';
+    font-family:'Franklin Gothic';
+    font-size: 50%;
+    visibility: visible;
+    /* margin-left: 0px; */
+    position: absolute;
+    left: 20px;
+  }
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
     /* border: 1px solid #070707; */
@@ -276,7 +271,7 @@ h1 {
 <h1>Our Menu</h1>
 
 <!-- <div class="row"> -->
-  <div class=" col-lg-4 col-md-6">
+  <div class=" col-lg-4 col-md-6 col-sm-12">
     <section id="menuSection1">
         <p id="menuTitle">Chicken</p>
         <p id="menuContent">
@@ -295,7 +290,7 @@ h1 {
     
     
   </div>
-  <div class=" col-lg-4 col-md-6"> <!--col-lg-4 col-md-6 col-sm-12">-->
+  <div class=" col-lg-4 col-md-6 col-sm-12"> <!--col-lg-4 col-md-6 col-sm-12">-->
     <section id="menuSection2">
         <p id="menuTitle">Beef</p>
         <p id="menuContent">
@@ -312,7 +307,7 @@ h1 {
         </p>
     </section>
   </div>
-  <div class=" col-lg-4 col-md-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
+  <div class=" col-lg-4 col-md-12 col-sm-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
     <section id="menuSection3">
         <p id="menuTitle">Sushi</p>
         <p id="menuContent">
