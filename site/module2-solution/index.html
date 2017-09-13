@@ -18,6 +18,8 @@ div {
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
+  position: relative;
+  /* background-color: #7E7E7E; */
 }
 
 h1 {
@@ -31,18 +33,15 @@ h1 {
   background-color: #A52A2A;
   color: white;
   font-family: Helvetica;
-  padding: 5px 25px;
-
-  /* margin: auto; */
-
-  margin-top: 0px;
-  margin-bottom: 0px;
-  /* float: right; */
-  /* width: 100%; */
-  /* width: 300px; */
-  width: 100%;
   font-size: 125%;
-  text-align: right;
+  text-align: center;
+  padding: 5px 25px;  
+  margin: 0px;
+  width: 120px;
+
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 #menuContent {
@@ -54,11 +53,16 @@ h1 {
   font-family: Helvetica;
   /* clear: left; */
   /* width: 300px; */
-  width: 100%;
+  /* width: 90%; */
   height: 100px;
   margin-top: 0px;
   margin-bottom: 0px;
-  /* margin-right: 0px; */
+
+  position: relative;
+  /* position: absolute; */
+  /* top: 30px;
+  left: 20px; */
+
   overflow: hidden;
   /* float: left; */
 }
@@ -223,23 +227,26 @@ h1 {
 
 <!-- <div class="row"> -->
   <div class=" col-lg-4 col-md-6">
-  <!-- <div class="box col-lg-4 col-md-6 col-sm-12"> -->
-    <p id="menuTitle">Chicken</p>
-    <p id="menuContent">Lorem ipsum dolor sit amet, 
-      consectetur adipiscing elit, sed do eiusmod tempor 
-      incididunt ut labore et dolore magna aliqua. Ut enim 
-      ad minim veniam, quis nostrud exercitation ullamco 
-      laboris nisi ut aliquip ex ea commodo consequat. 
-      Duis aute irure dolor in reprehenderit in voluptate 
-      velit esse cillum dolore eu fugiat nulla pariatur. 
-      Excepteur sint occaecat cupidatat non proident, 
-      sunt in culpa qui officia deserunt mollit anim id est 
-      laborum.
-    </p>
+    <section id="menuContent">
+        <p id="menuTitle">Chicken</p>
+        Lorem ipsum dolor sit amet, 
+        consectetur adipiscing elit, sed do eiusmod tempor 
+        incididunt ut labore et dolore magna aliqua. Ut enim 
+        ad minim veniam, quis nostrud exercitation ullamco 
+        laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate 
+        velit esse cillum dolore eu fugiat nulla pariatur. 
+        Excepteur sint occaecat cupidatat non proident, 
+        sunt in culpa qui officia deserunt mollit anim id est 
+        laborum.
+    </section>
+    
+    
   </div>
   <div class=" col-lg-4 col-md-6"> <!--col-lg-4 col-md-6 col-sm-12">-->
-    <p id="menuTitle">Beef</p>
-    <p id="menuContent">Lorem ipsum dolor sit amet, 
+    <section id="menuContent">
+        <p id="menuTitle">Beef</p>
+        Lorem ipsum dolor sit amet, 
         consectetur adipiscing elit, sed do eiusmod tempor 
         incididunt ut labore et dolore magna aliqua. Ut enim 
         ad minim veniam, quis nostrud exercitation ullamco 
@@ -249,11 +256,12 @@ h1 {
         Excepteur sint occaecat cupidatat non proident, 
         sunt in culpa qui officia deserunt mollit anim id est 
         laborum.
-      </p>
+    </section>
   </div>
   <div class=" col-lg-4 col-md-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
-    <p id="menuTitle">Sushi</p>
-    <p id="menuContent">Lorem ipsum dolor sit amet, 
+    <section id="menuContent">
+        <p id="menuTitle">Sushi</p>
+        Lorem ipsum dolor sit amet, 
         consectetur adipiscing elit, sed do eiusmod tempor 
         incididunt ut labore et dolore magna aliqua. Ut enim 
         ad minim veniam, quis nostrud exercitation ullamco 
@@ -263,7 +271,7 @@ h1 {
         Excepteur sint occaecat cupidatat non proident, 
         sunt in culpa qui officia deserunt mollit anim id est 
         laborum.
-      </p>
+    </section>
     </div>
 <!-- </div> -->
 
