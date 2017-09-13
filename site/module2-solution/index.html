@@ -19,7 +19,6 @@ div {
   padding-left: 10px;
   padding-bottom: 20px;
   position: relative;
-  /* background-color: #7E7E7E; */
 }
 
 h1 {
@@ -44,30 +43,32 @@ h1 {
   top: 0px;
 }
 
-#menuSection1 {
+.menuSectionHover:hover {
+  overflow: auto;
+  /* display: none; */
+  /* overflow-y: scroll; */
+  cursor: ns-resize;
+}
+
+.menuSection1 {
   background-color: #52CC4E;
   border: 1px solid black;
-
   color: #070707;
-  /* padding: 20px; */
   font-family: Helvetica;
-  /* clear: left; */
-  /* width: 300px; */
-  /* width: 90%; */
   height: 150px;
   margin-top: 0px;
   margin-bottom: 0px;
-
   position: relative;
-  /* position: absolute; */
-  /* top: 30px;
-  left: 20px; */
-
   overflow: hidden;
-  /* float: left; */
 }
 
-#menuSection2 {
+/* .scrollbox {
+  overflow: auto;
+  visibility: hidden;
+} */
+
+
+.menuSection2 {
   background-color: #4875D8;
   border: 1px solid black;
   color: #070707;
@@ -79,7 +80,7 @@ h1 {
   overflow: hidden;
 }
 
-#menuSection3 {
+.menuSection3 {
   background-color: #C3CC47;
   border: 1px solid black;
   color: #070707;
@@ -93,37 +94,24 @@ h1 {
 
 
 #menuContent {
-  /* background-color: #7E7E7E;
-  border: 1px solid black;
-
-  color: #070707;
-  padding: 10px; */
-  /* font-family: Helvetica; */
-  /* clear: left; */
-  /* width: 300px; */
-  /* width: 90%; */
-  /* height: 100px;
-  margin-top: 0px;
-  margin-bottom: 0px; */
-
-  /* position: relative; */
   position: absolute; 
   top: 40px;
-
   padding: 15px;
   margin: 0px;
-
   overflow: hidden;
-  /* float: left; */
+}
+
+#menuContent:hover {
+  overflow: scroll;
+  display: none;
+  cursor: default;
+  background-color: white;
 }
 
 /********** Desktop only **********/
 @media (min-width: 992px) {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
     float: left;
-    /* border: 1px solid #070707; */
-    /* margin-right: 20px; */
-    /* box-sizing: border-box; */
   }
   .col-lg-1 {
     width: 8.33%;
@@ -167,7 +155,6 @@ h1 {
 @media (min-width: 768px) and (max-width: 991px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
-    /* border: 1px solid #070707; */
   }
   .col-md-1 {
     width: 8.33%;
@@ -219,7 +206,6 @@ h1 {
     font-family:'Franklin Gothic';
     font-size: 50%;
     visibility: visible;
-    /* margin-left: 0px; */
     position: absolute;
     left: 20px;
   }
@@ -271,8 +257,8 @@ h1 {
 <h1>Our Menu</h1>
 
 <!-- <div class="row"> -->
-  <div class=" col-lg-4 col-md-6 col-sm-12">
-    <section id="menuSection1">
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <section class="menuSectionHover menuSection1">
         <p id="menuTitle">Chicken</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
@@ -284,17 +270,35 @@ h1 {
           velit esse cillum dolore eu fugiat nulla pariatur. 
           Excepteur sint occaecat cupidatat non proident, 
           sunt in culpa qui officia deserunt mollit anim id est 
+          laborum. Lorem ipsum dolor sit amet, 
+          consectetur adipiscing elit, sed do eiusmod tempor 
+          incididunt ut labore et dolore magna aliqua. Ut enim 
+          ad minim veniam, quis nostrud exercitation ullamco 
+          laboris nisi ut aliquip ex ea commodo consequat. 
+          Duis aute irure dolor in reprehenderit in voluptate 
+          velit esse cillum dolore eu fugiat nulla pariatur. 
+          Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est 
           laborum.
         </p>
     </section>
     
     
   </div>
-  <div class=" col-lg-4 col-md-6 col-sm-12"> <!--col-lg-4 col-md-6 col-sm-12">-->
-    <section id="menuSection2">
+  <div class="col-lg-4 col-md-6 col-sm-12"> <!--col-lg-4 col-md-6 col-sm-12">-->
+    <section class="menuSectionHover menuSection2">
         <p id="menuTitle">Beef</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
+          consectetur adipiscing elit, sed do eiusmod tempor 
+          incididunt ut labore et dolore magna aliqua. Ut enim 
+          ad minim veniam, quis nostrud exercitation ullamco 
+          laboris nisi ut aliquip ex ea commodo consequat. 
+          Duis aute irure dolor in reprehenderit in voluptate 
+          velit esse cillum dolore eu fugiat nulla pariatur. 
+          Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est 
+          laborum. Lorem ipsum dolor sit amet, 
           consectetur adipiscing elit, sed do eiusmod tempor 
           incididunt ut labore et dolore magna aliqua. Ut enim 
           ad minim veniam, quis nostrud exercitation ullamco 
@@ -307,11 +311,20 @@ h1 {
         </p>
     </section>
   </div>
-  <div class=" col-lg-4 col-md-12 col-sm-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
-    <section id="menuSection3">
+  <div class="col-lg-4 col-md-12 col-sm-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
+    <section class="menuSectionHover menuSection3">
         <p id="menuTitle">Sushi</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
+          consectetur adipiscing elit, sed do eiusmod tempor 
+          incididunt ut labore et dolore magna aliqua. Ut enim 
+          ad minim veniam, quis nostrud exercitation ullamco 
+          laboris nisi ut aliquip ex ea commodo consequat. 
+          Duis aute irure dolor in reprehenderit in voluptate 
+          velit esse cillum dolore eu fugiat nulla pariatur. 
+          Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est 
+          laborum. Lorem ipsum dolor sit amet, 
           consectetur adipiscing elit, sed do eiusmod tempor 
           incididunt ut labore et dolore magna aliqua. Ut enim 
           ad minim veniam, quis nostrud exercitation ullamco 
