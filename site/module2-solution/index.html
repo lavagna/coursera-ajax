@@ -27,7 +27,7 @@ h1 {
   font-size: 175%;
 }
 
-#menuTitle {
+.menuTitleChicken {
   border: 1px solid black;
   background-color: #A52A2A;
   color: white;
@@ -36,8 +36,40 @@ h1 {
   text-align: center;
   padding: 5px 25px;  
   margin: 0px;
-  width: 120px;
 
+  width: 120px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.menuTitleBeef {
+  border: 1px solid black;
+  background-color: #A52A2A;
+  color: white;
+  font-family: Helvetica;
+  font-size: 125%;
+  text-align: center;
+  padding: 5px 25px;  
+  margin: 0px;
+
+  width: 120px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.menuTitleSushi{
+  border: 1px solid black;
+  background-color: #A52A2A;
+  color: white;
+  font-family: Helvetica;
+  font-size: 125%;
+  text-align: center;
+  padding: 5px 25px;  
+  margin: 0px;
+
+  width: 120px;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -45,8 +77,6 @@ h1 {
 
 .menuSectionHover:hover {
   overflow: auto;
-  /* display: none; */
-  /* overflow-y: scroll; */
   cursor: ns-resize;
 }
 
@@ -60,13 +90,8 @@ h1 {
   margin-bottom: 0px;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
-
-/* .scrollbox {
-  overflow: auto;
-  visibility: hidden;
-} */
-
 
 .menuSection2 {
   background-color: #4875D8;
@@ -91,7 +116,6 @@ h1 {
   position: relative;
   overflow: hidden;
 }
-
 
 #menuContent {
   position: absolute; 
@@ -209,9 +233,69 @@ h1 {
     position: absolute;
     left: 20px;
   }
+
+  .menuTitleChicken {
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .menuTitleChicken:after {
+    visibility: visible;
+    background-color: #A52A2A;
+    color: white;
+    font-family: Helvetica;
+    font-size: 125%;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    content: 'Chicken Noodle Soup: Good for the body mind and soul'
+  }
+
+  .menuTitleBeef {
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .menuTitleBeef:after {
+    visibility: visible;
+    background-color: #A52A2A;
+    color: white;
+    font-family: Helvetica;
+    font-size: 125%;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    content: 'A good steak lifts up my mood and iron levels'
+  }
+
+  .menuTitleSushi {
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .menuTitleSushi:after {
+    visibility: visible;
+    background-color: #A52A2A;
+    color: white;
+    font-family: Helvetica;
+    font-size: 125%;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    content: 'My life would not be complete without you sushi'
+  }
+
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
-    /* border: 1px solid #070707; */
   }
   .col-sm-1 {
     width: 8.33%;
@@ -256,10 +340,9 @@ h1 {
 <body>
 <h1>Our Menu</h1>
 
-<!-- <div class="row"> -->
   <div class="col-lg-4 col-md-6 col-sm-12">
     <section class="menuSectionHover menuSection1">
-        <p id="menuTitle">Chicken</p>
+        <p class="menuTitleChicken">Chicken</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
           consectetur adipiscing elit, sed do eiusmod tempor 
@@ -283,11 +366,10 @@ h1 {
         </p>
     </section>
     
-    
   </div>
   <div class="col-lg-4 col-md-6 col-sm-12"> <!--col-lg-4 col-md-6 col-sm-12">-->
     <section class="menuSectionHover menuSection2">
-        <p id="menuTitle">Beef</p>
+        <p class="menuTitleBeef">Beef</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
           consectetur adipiscing elit, sed do eiusmod tempor 
@@ -313,7 +395,7 @@ h1 {
   </div>
   <div class="col-lg-4 col-md-12 col-sm-12"> <!--col-lg-4 col-md-12 col-sm-12">-->
     <section class="menuSectionHover menuSection3">
-        <p id="menuTitle">Sushi</p>
+        <p class="menuTitleSushi">Sushi</p>
         <p id="menuContent">
           Lorem ipsum dolor sit amet, 
           consectetur adipiscing elit, sed do eiusmod tempor 
@@ -337,7 +419,6 @@ h1 {
         </p>
     </section>
     </div>
-<!-- </div> -->
 
 </body>
 </html>
