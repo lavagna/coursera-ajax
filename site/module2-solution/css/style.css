@@ -1,0 +1,254 @@
+/********** Base styles **********/
+* {
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    margin-bottom: 15px;
+    text-align: center;  
+    font-size: 175%;
+  }
+  
+  /* Padding right and left are cumulative whereas
+  padding on top of each other is not */
+  div {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  
+  .menuTitleAll {
+    border: 1px solid black;
+    background-color: #A52A2A;
+    color: white;
+    font-family: Helvetica;
+    font-size: 125%;
+    text-align: center;
+    padding: 5px;  
+    margin: 0px;
+    width: 100%;
+    position: relative;
+    float: right;
+  }
+  
+  .menuSectionAll {
+    border: 1px solid black;
+    color: #070707;
+    font-family: Helvetica;
+    height: 150px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .menuSection1 {
+    background-color: #52CC4E;
+  }
+  
+  .menuSection2 {
+    background-color: #4875D8;
+  }
+  
+  .menuSection3 {
+    background-color: #C3CC47;
+  }
+  
+  .menuContent {
+    color: #070707;
+    font-family: Helvetica;
+    height: 150px;
+    width: 100%;
+    padding: 15px;
+    margin: 0px;
+    clear: right;
+    overflow: auto;
+  }
+  
+  .menuContent:hover {
+    cursor: ns-resize;
+  }
+  
+  /********** Desktop only **********/
+  @media (min-width: 992px) {
+  
+    .menuTitle1 {
+        width: 30%;
+    }
+    .menuTitle2 {
+        width: 30%;
+    }
+    .menuTitle3 {
+        width: 30%;
+    }
+  
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+      float: left;
+    }
+    .col-lg-1 {
+      width: 8.33%;
+    }
+    .col-lg-2 {
+      width: 16.66%;
+    }
+    .col-lg-3 {
+      width: 25%;
+    }
+    .col-lg-4 {
+      width: 33.33%;
+    }
+    .col-lg-5 {
+      width: 41.66%;
+    }
+    .col-lg-6 {
+      width: 50%;
+    }
+    .col-lg-7 {
+      width: 58.33%;
+    }
+    .col-lg-8 {
+      width: 66.66%;
+    }
+    .col-lg-9 {
+      width: 74.99%;
+    }
+    .col-lg-10 {
+      width: 83.33%;
+    }
+    .col-lg-11 {
+      width: 91.66%;
+    }
+    .col-lg-12 {
+      width: 100%;
+    }
+  }
+  
+  /********** Tablet devices only **********/
+  @media (min-width: 768px) and (max-width: 991px) {
+  
+    .menuTitle1 {
+      width: 30%;
+    }
+    .menuTitle2 {
+        width: 30%;
+    }
+    .menuTitle3 {
+        width: 140px;
+    }
+  
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+      float: left;
+    }
+    .col-md-1 {
+      width: 8.33%;
+    }
+    .col-md-2 {
+      width: 16.66%;
+    }
+    .col-md-3 {
+      width: 25%;
+    }
+    .col-md-4 {
+      width: 33.33%;
+    }
+    .col-md-5 {
+      width: 41.66%;
+    }
+    .col-md-6 {
+      width: 50%;
+    }
+    .col-md-7 {
+      width: 58.33%;
+    }
+    .col-md-8 {
+      width: 66.66%;
+    }
+    .col-md-9 {
+      width: 74.99%;
+    }
+    .col-md-10 {
+      width: 83.33%;
+    }
+    .col-md-11 {
+      width: 91.66%;
+    }
+    .col-md-12 {
+      width: 100%;
+    }
+  }
+  
+  /********** Mobile devices only **********/
+  @media (max-width: 767px) {
+  
+    h1 {
+      visibility: hidden;
+      text-align: left;
+    }
+    h1:after {
+      content: 'Catagories';
+      font-family:'Franklin Gothic';
+      font-size: 50%;
+      visibility: visible;
+      position: absolute;
+      left: 20px;
+    }
+  
+    .menuTitle1 span {
+      display: none;
+    }
+    .menuTitle1:after {
+      content: 'Chicken Noodle Soup: Good for the body mind and soul';
+    }
+  
+    .menuTitle2 span {
+      display: none;
+    }
+    .menuTitle2:after {
+      content: 'A good steak lifts up my mood and iron levels';
+    }
+  
+    .menuTitle3 span {
+      display: none;
+    }
+    .menuTitle3:after {
+      content: 'My life would not be complete without you Mr. Sushi';
+    }
+  
+    .col-sm-1 {
+      width: 8.33%;
+    }
+    .col-sm-2 {
+      width: 16.66%;
+    }
+    .col-sm-3 {
+      width: 25%;
+    }
+    .col-sm-4 {
+      width: 33.33%;
+    }
+    .col-sm-5 {
+      width: 41.66%;
+    }
+    .col-sm-6 {
+      width: 50%;
+    }
+    .col-sm-7 {
+      width: 58.33%;
+    }
+    .col-sm-8 {
+      width: 66.66%;
+    }
+    .col-sm-9 {
+      width: 74.99%;
+    }
+    .col-sm-10 {
+      width: 83.33%;
+    }
+    .col-sm-11 {
+      width: 91.66%;
+    }
+    .col-sm-12 {
+      width: 100%;
+    }
+  }
