@@ -63,11 +63,12 @@
     padding: 15px;
     margin: 0px;
     clear: right;
-    overflow: auto;
+    /* overflow: auto; */
   }
   
   .menuContent:hover {
     cursor: ns-resize;
+    overflow: auto; 
   }
   
   /********** Desktop only **********/
