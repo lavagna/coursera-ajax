@@ -68,7 +68,7 @@
   
   .menuContent:hover {
     cursor: ns-resize;
-    overflow: auto; 
+    overflow: scroll; 
   }
   
   /********** Desktop only **********/
