@@ -1,0 +1,16 @@
+#nav-list {
+    text-align: center;
+    border: 1px border-style black;
+    background-color: #86BBEC;
+    text-decoration-color: white;
+    border: 1px solid black;
+}
+
+#nav-list a {
+    border: 1px solid black;
+}
+
+.menu-box {
+    background-color: gray;
+    margin: 5px;
+}
