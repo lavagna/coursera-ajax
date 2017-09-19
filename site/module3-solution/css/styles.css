@@ -10,7 +10,38 @@
     border: 1px solid black;
 }
 
-.menu-box {
+#home-tiles {
+    padding-top: 15px;
+/* 
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 20px;
+        position: relative; */
+}
+#menuSection1, #menuSection2, #menuSection3 {
+    width: 100%;
+    position: relative;
     background-color: gray;
-    margin: 5px;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+
+
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+#menuSection1 {
+    background-color: #52CC4E;
+}
+
+#menuSection2 {
+    background-color: #B453B4;
+}
+
+#menuSection3 {
+    background-color: #C3CC47;
 }
