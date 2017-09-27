@@ -19,6 +19,11 @@
     console.log(helloSpeaker.speakWord + " " + name);
   }
 
+  // Assignment 4.2.a
+  helloSpeaker.speakSimple = function(name) {
+    return helloSpeaker.speakWord + " " + name;
+  }
+
   // STEP 5: Expose the 'helloSpeaker' object to the global scope. Name it
   // 'helloSpeaker' on the global scope as well.
   // See Lecture 52, part 2

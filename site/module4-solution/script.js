@@ -38,8 +38,42 @@ WARNING!!! WARNING!!!
   var greeter = {};
   greeter.names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
   
-  // var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
+  // Helper function: returns a greeting based on name
+  function getNamesSimpleArray(name) {
+
+    var firstLetter = name.charAt(0).toLowerCase();
+    if (firstLetter == 'j' || firstLetter == "J") {
+      return byeSpeaker.speakSimple(name);
+    } else {
+      return helloSpeaker.speakSimple(name);
+    }
+  }
+
+  greeter.namesSimple = greeter.names.map(
+    getNamesSimpleArray
+  );
+
+  // greeter.namesSimple = greeter.names.map(
+  //   getNamesSimpleArray(name)
+  // );
+
+  // greeter.namesSimple = greeter.names.map(function(x){
   
+  //     var firstLetter = x.charAt(0).toLowerCase();
+  //     if (firstLetter == 'j' || firstLetter == "J") {
+  //       return byeSpeaker.speakSimple(x);
+  //     } else {
+  //       return helloSpeaker.speakSimple(x);
+  //     }
+  //   }
+  // );
+
+  // Print the custom made array above
+  for (var i=0; i < greeter.namesSimple.length; i++) {
+    console.log(greeter.namesSimple[i]);
+  }
+
+
     // STEP 10:
     // Loop over the names array and say either 'Hello' or "Good Bye"
     // using the 'speak' method or either helloSpeaker's or byeSpeaker's
