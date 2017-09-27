@@ -38,7 +38,7 @@ WARNING!!! WARNING!!!
   var greeter = {};
   greeter.names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
   
-  // Helper function: returns a greeting based on name
+  // 4.2: Helper function: returns a greeting based on name
   function getNamesSimpleArray(name) {
 
     var firstLetter = name.charAt(0).toLowerCase();
@@ -49,61 +49,102 @@ WARNING!!! WARNING!!!
     }
   }
 
+  // 4.2: Array.prototype.map: pass the function as a parameter
   greeter.namesSimple = greeter.names.map(
     getNamesSimpleArray
   );
 
-  // greeter.namesSimple = greeter.names.map(
-  //   getNamesSimpleArray(name)
-  // );
+  // 4.2: Print the custom made array above
+  // console.log("Part 2 solution ********************");
+  // for (var i=0; i < greeter.namesSimple.length; i++) {
+  //   console.log(greeter.namesSimple[i]);
+  // }
 
-  // greeter.namesSimple = greeter.names.map(function(x){
-  
-  //     var firstLetter = x.charAt(0).toLowerCase();
-  //     if (firstLetter == 'j' || firstLetter == "J") {
-  //       return byeSpeaker.speakSimple(x);
-  //     } else {
-  //       return helloSpeaker.speakSimple(x);
-  //     }
+  console.log("greeter.namesSimple = " + greeter.namesSimple);
+
+  // 4.3 Extra Credit
+  //  greeter.helloGreetings = greeter.namesSimple.reduce(function(helloAll, greeting) {
+    
+  //   var expr = /hello/;
+
+  //   if (greeting.search(expr)) {
+  //     console.log("this is a hello greeting!");
+  //     helloAll = helloSpeaker.speakSimple(name);
   //   }
-  // );
+  //   return helloAll;
 
-  // Print the custom made array above
-  for (var i=0; i < greeter.namesSimple.length; i++) {
-    console.log(greeter.namesSimple[i]);
+  // }, {hello: [], bye: []});
+
+  // 4.3: Helper function: returns ALL HELLO greetings
+  function getAllHelloGreetings(greeting) {
+    var expr = /hello/;
+    if (greeting.search(expr)) {
+      return greeting;
+    }
   }
 
+ var newArr = greeter.namesSimple.reduce(function(accumulator, currentValue) {
 
-    // STEP 10:
-    // Loop over the names array and say either 'Hello' or "Good Bye"
-    // using the 'speak' method or either helloSpeaker's or byeSpeaker's
-    // 'speak' method.
-    // See Lecture 50, part 1
-    for (var i=0; i < greeter.names.length; i++) {
-  
-      // STEP 11:
-      // Retrieve the first letter of the current name in the loop.
-      // Use the string object's 'charAt' function. Since we are looking for
-      // names that start with either upper case or lower case 'J'/'j', call
-      // string object's 'toLowerCase' method on the result so we can compare
-      // to lower case character 'j' afterwards.
-      // Look up these methods on Mozilla Developer Network web site if needed.
-      var firstLetter = greeter.names[i].charAt(0).toLowerCase();
-      // console.log("firstLetter = " + firstLetter);
+    console.log("accumulator = " + accumulator);
+    // accumulator.hello += "testing!";
+    // console.log("accumulator.hello = "+ accumulator.hello);
+    console.log("currentValue = " + currentValue);
+    // console.log("currentIndex = " + currentIndex);
+    // console.log("array = " + array);
 
-      // STEP 12:
-      // Compare the 'firstLetter' retrieved in STEP 11 to lower case
-      // 'j'. If the same, call byeSpeaker's 'speak' method with the current name
-      // in the loop. Otherwise, call helloSpeaker's 'speak' method with the current
-      // name in the loop.
-      if (firstLetter == 'j' || firstLetter == "J") {
-        byeSpeaker.speak(greeter.names[i]);
-      } else {
-        helloSpeaker.speak(greeter.names[i]);
-      }
+    var substring = "Hello";
+    if (currentValue.includes(substring)) {
+       accumulator.hello += currentValue;
+    } else {
+       accumulator.bye += currentValue;
     }
 
+    return accumulator;
+
+  }, {hello: [], bye: []});
+
+  console.log("helloGreetings = " + newArr.hello);
+  console.log("byeGreetings = " + newArr.bye);
+
+  // for (var i=0; i<greeter.helloGreetings.length; i++) {
+  //   console.log(greeter.helloGreetings[i]);
+  // }
+
+  // console.log("Part 1 solution ********************");
+
+  //   // STEP 10:
+  //   // Loop over the names array and say either 'Hello' or "Good Bye"
+  //   // using the 'speak' method or either helloSpeaker's or byeSpeaker's
+  //   // 'speak' method.
+  //   // See Lecture 50, part 1
+  //   for (var i=0; i < greeter.names.length; i++) {
+  
+  //     // STEP 11:
+  //     // Retrieve the first letter of the current name in the loop.
+  //     // Use the string object's 'charAt' function. Since we are looking for
+  //     // names that start with either upper case or lower case 'J'/'j', call
+  //     // string object's 'toLowerCase' method on the result so we can compare
+  //     // to lower case character 'j' afterwards.
+  //     // Look up these methods on Mozilla Developer Network web site if needed.
+  //     var firstLetter = greeter.names[i].charAt(0).toLowerCase();
+  //     // console.log("firstLetter = " + firstLetter);
+
+  //     // STEP 12:
+  //     // Compare the 'firstLetter' retrieved in STEP 11 to lower case
+  //     // 'j'. If the same, call byeSpeaker's 'speak' method with the current name
+  //     // in the loop. Otherwise, call helloSpeaker's 'speak' method with the current
+  //     // name in the loop.
+  //     if (firstLetter == 'j' || firstLetter == "J") {
+  //       byeSpeaker.speak(greeter.names[i]);
+  //     } else {
+  //       helloSpeaker.speak(greeter.names[i]);
+  //     }
+  //   }
+
     window.greeter = greeter;
+
+
+
 
 })(window);
 
