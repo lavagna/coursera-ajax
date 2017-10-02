@@ -18,6 +18,7 @@ var allCategoriesUrl =
   "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
+var aboutHtml = "snippets/about-snippet.html";
 var menuItemsUrl =
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
@@ -150,6 +151,14 @@ dc.loadMenuCategories = function () {
     buildAndShowCategoriesHTML);
 };
 
+// Load the about page view
+dc.loadAbout = function () {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    aboutHtml,
+    buildAndShowAboutHTML);
+};
+
 
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
@@ -186,6 +195,26 @@ function buildAndShowCategoriesHTML (categories) {
     false);
 }
 
+function buildAndShowAboutHTML () {
+  // Load title snippet of categories page
+  // $ajaxUtils.sendGetRequest(
+  //   categoriesTitleHtml,
+  //   function (categoriesTitleHtml) {
+      // Retrieve single category snippet
+      $ajaxUtils.sendGetRequest(
+        aboutHtml,
+        function (aboutHtml) {
+          // Switch CSS class active to menu button
+          switchMenuToActive();
+
+          var aboutViewHtml =
+            buildAboutViewHtml(aboutHtml);
+          insertHtml("#main-content", aboutViewHtml);
+        },
+        false);
+    // },
+    // false);
+}
 
 // Using categories data and snippets html
 // build categories view HTML to be inserted into page
@@ -215,7 +244,28 @@ function buildCategoriesViewHtml(categories,
   return finalHtml;
 }
 
+function buildAboutViewHtml(categoryHtml) {
 
+  var finalHtml = "<section class='row'>HELLO HERE!";
+
+  // // Loop over categories
+  // for (var i = 0; i < categories.length; i++) {
+  // // Insert category values
+  // var html = categoryHtml;
+  // var name = "" + categories[i].name;
+  // var short_name = categories[i].short_name;
+  // html =
+  // insertProperty(html, "name", name);
+  // html =
+  // insertProperty(html,
+  // "short_name",
+  // short_name);
+  // finalHtml += html;
+  // }
+
+  finalHtml += "</section>";
+  return finalHtml;
+}
 
 // Builds HTML for the single category page based on the data
 // from the server
