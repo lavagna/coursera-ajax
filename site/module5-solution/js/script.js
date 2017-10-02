@@ -18,7 +18,7 @@ var allCategoriesUrl =
   "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
-var aboutHtml = "snippets/about-snippet.html";
+var aboutHtmlUrl = "snippets/about-snippet.html";
 var menuItemsUrl =
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
@@ -79,15 +79,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML,
 // so it can be called when server responds with the categories data.
 
-// *** start ***
-// On first load, show home view
-showLoading("#main-content");
-$ajaxUtils.sendGetRequest(
-  allCategoriesUrl,
-    buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
-  // [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
-  true); // Explicitely setting the flag to get JSON from server processed into an object literal
-});
+    // *** start ***
+    // On first load, show home view
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(
+      allCategoriesUrl,
+        buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
+      // [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
+      true); // Explicitely setting the flag to get JSON from server processed into an object literal
+  });
 // *** finish **
 
 
@@ -155,8 +155,16 @@ dc.loadMenuCategories = function () {
 dc.loadAbout = function () {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
-    aboutHtml,
-    buildAndShowAboutHTML);
+    aboutHtmlUrl,
+    function (responseText) {
+      document.querySelector("#main-content")
+      .innerHTML = responseText;
+    },
+    false);
+    
+    // buildAndShowAboutHTML);
+    
+    // buildAndShowAboutHTML);
 };
 
 
@@ -195,26 +203,89 @@ function buildAndShowCategoriesHTML (categories) {
     false);
 }
 
-function buildAndShowAboutHTML () {
+// update this to show about stuff
+function buildAndShowAboutHTML (categories) {
   // Load title snippet of categories page
-  // $ajaxUtils.sendGetRequest(
-  //   categoriesTitleHtml,
-  //   function (categoriesTitleHtml) {
+  $ajaxUtils.sendGetRequest(
+    categoriesTitleHtml,
+    function (categoriesTitleHtml) {
       // Retrieve single category snippet
       $ajaxUtils.sendGetRequest(
-        aboutHtml,
-        function (aboutHtml) {
+        categoryHtml,
+        function (categoryHtml) {
           // Switch CSS class active to menu button
           switchMenuToActive();
 
-          var aboutViewHtml =
-            buildAboutViewHtml(aboutHtml);
-          insertHtml("#main-content", aboutViewHtml);
+          var categoriesViewHtml =
+            buildCategoriesViewHtml(categories,
+                                    categoriesTitleHtml,
+                                    categoryHtml);
+          insertHtml("#main-content", categoriesViewHtml);
         },
         false);
-    // },
-    // false);
+    },
+    false);
 }
+
+// function buildAndShowAboutHTML () {
+//   // Load title snippet of categories page
+//   // $ajaxUtils.sendGetRequest(
+//   //   categoriesTitleHtml,
+//   //   function (categoriesTitleHtml) {
+//       // Retrieve single category snippet
+//       $ajaxUtils.sendGetRequest(
+//         aboutHtml,
+//         function (aboutHtml) {
+//           // Switch CSS class active to menu button
+//           switchMenuToActive();
+
+//           var aboutViewHtml =
+//             buildAboutViewHtml(aboutHtml);
+//           insertHtml("#main-content", aboutViewHtml);
+//         },
+//         false);
+//     // },
+//     // false);
+// }
+
+// function buildAndShowAboutHTML () {
+  
+//     // Load home snippet page
+//     $ajaxUtils.sendGetRequest(
+//       aboutHtmlUrl,
+//       function (aboutHtml) {
+  
+//         // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
+//         // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
+//         // variable's name implies it expects.
+//         // var chosenCategoryShortName = ....
+//         // var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+//         console.log("I'm in About Page!");
+//         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
+//         // chosen category from STEP 2. Use existing insertProperty function for that purpose.
+//         // Look through this code for an example of how to do use the insertProperty function.
+//         // WARNING! You are inserting something that will have to result in a valid Javascript
+//         // syntax because the substitution of {{randomCategoryShortName}} becomes an argument
+//         // being passed into the $dc.loadMenuItems function. Think about what that argument needs
+//         // to look like. For example, a valid call would look something like this:
+//         // $dc.loadMenuItems('L')
+//         // Hint: you need to surround the chosen category short name with something before inserting
+//         // it into the home html snippet.
+//         //
+//         // var homeHtmlToInsertIntoMainPage = ....
+//         // var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,
+//         //                "randomCategoryShortName",
+//         //                "'" + chosenCategoryShortName + "'");
+  
+//         // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
+//         // Use the existing insertHtml function for that purpose. Look through this code for an example
+//         // of how to do that.
+//         // ....
+//         insertHtml("#main-content", abouHtml);
+  
+//       },
+//       false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
+//   }
 
 // Using categories data and snippets html
 // build categories view HTML to be inserted into page
