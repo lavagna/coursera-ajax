@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
 
+  console.log("buildAndShowHomehTML:: categories = " + categories);
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
@@ -156,16 +157,25 @@ dc.loadAbout = function () {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
     aboutHtmlUrl,
-    function (responseText) {
-      document.querySelector("#main-content")
-      .innerHTML = responseText;
-    },
+    buildAndShowAboutHTML,
+    // function (responseText) {
+    //   document.querySelector("#main-content")
+    //   .innerHTML = responseText;
+    // },
     false);
     
     // buildAndShowAboutHTML);
     
     // buildAndShowAboutHTML);
 };
+
+// showLoading("#main-content");
+// $ajaxUtils.sendGetRequest(
+//   allCategoriesUrl,
+//     buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
+//   // [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
+//   true); // Explicitely setting the flag to get JSON from server processed into an object literal
+// });
 
 
 // Load the menu items view
@@ -207,46 +217,24 @@ function buildAndShowCategoriesHTML (categories) {
 function buildAndShowAboutHTML (categories) {
   // Load title snippet of categories page
   $ajaxUtils.sendGetRequest(
-    categoriesTitleHtml,
-    function (categoriesTitleHtml) {
-      // Retrieve single category snippet
-      $ajaxUtils.sendGetRequest(
-        categoryHtml,
-        function (categoryHtml) {
-          // Switch CSS class active to menu button
-          switchMenuToActive();
+    aboutHtmlUrl,
+    function (aboutHtmlUrl) {
 
-          var categoriesViewHtml =
-            buildCategoriesViewHtml(categories,
-                                    categoriesTitleHtml,
-                                    categoryHtml);
-          insertHtml("#main-content", categoriesViewHtml);
-        },
-        false);
-    },
+      // Generate a random number between 1 & 5
+      var numStars = Math.floor(Math.random() * 5) + 1;
+      console.log("numStars = " + numStars);
+
+      
+      var aboutHtmlToInsertIntoMainPage = insertProperty(aboutHtmlUrl,
+                  "star-rating",
+                  "fa fa-star-o");
+
+          insertHtml("#main-content", aboutHtmlToInsertIntoMainPage);
+      },
     false);
 }
 
-// function buildAndShowAboutHTML () {
-//   // Load title snippet of categories page
-//   // $ajaxUtils.sendGetRequest(
-//   //   categoriesTitleHtml,
-//   //   function (categoriesTitleHtml) {
-//       // Retrieve single category snippet
-//       $ajaxUtils.sendGetRequest(
-//         aboutHtml,
-//         function (aboutHtml) {
-//           // Switch CSS class active to menu button
-//           switchMenuToActive();
 
-//           var aboutViewHtml =
-//             buildAboutViewHtml(aboutHtml);
-//           insertHtml("#main-content", aboutViewHtml);
-//         },
-//         false);
-//     // },
-//     // false);
-// }
 
 // function buildAndShowAboutHTML () {
   
@@ -315,9 +303,13 @@ function buildCategoriesViewHtml(categories,
   return finalHtml;
 }
 
-function buildAboutViewHtml(categoryHtml) {
+function buildAboutViewHtml(originalHtml) {
 
-  var finalHtml = "<section class='row'>HELLO HERE!";
+  // var finalHtml = "<section class='row'>HELLO HERE!";
+  var finalHtml = originalHtml;
+  console.log("originalHtml = " + originalHtml);
+  finalHtml = insertProperty(originalHtml, "star-rating", "fa fa-star-o");
+
 
   // // Loop over categories
   // for (var i = 0; i < categories.length; i++) {
@@ -334,7 +326,7 @@ function buildAboutViewHtml(categoryHtml) {
   // finalHtml += html;
   // }
 
-  finalHtml += "</section>";
+  // finalHtml += "</section>";
   return finalHtml;
 }
 
@@ -363,6 +355,12 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
     false);
 }
 
+function buildAboutViewHtml(aboutHtml) {
+  
+
+  finalHtml = "<section class='row'>";
+
+}
 
 // Using category and menu items data and snippets html
 // build menu items view HTML to be inserted into page
