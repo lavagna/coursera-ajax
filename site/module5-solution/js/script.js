@@ -154,28 +154,13 @@ dc.loadMenuCategories = function () {
 
 // Load the about page view
 dc.loadAbout = function () {
+
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
     aboutHtmlUrl,
     buildAndShowAboutHTML,
-    // function (responseText) {
-    //   document.querySelector("#main-content")
-    //   .innerHTML = responseText;
-    // },
     false);
-    
-    // buildAndShowAboutHTML);
-    
-    // buildAndShowAboutHTML);
 };
-
-// showLoading("#main-content");
-// $ajaxUtils.sendGetRequest(
-//   allCategoriesUrl,
-//     buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
-//   // [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
-//   true); // Explicitely setting the flag to get JSON from server processed into an object literal
-// });
 
 
 // Load the menu items view
@@ -186,7 +171,6 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
-
 
 // Builds HTML for the categories page based on the data
 // from the server
@@ -213,67 +197,35 @@ function buildAndShowCategoriesHTML (categories) {
     false);
 }
 
-// update this to show about stuff
+// build and display the about page
 function buildAndShowAboutHTML (categories) {
-  // Load title snippet of categories page
+
   $ajaxUtils.sendGetRequest(
     aboutHtmlUrl,
     function (aboutHtmlUrl) {
 
       // Generate a random number between 1 & 5
       var numStars = Math.floor(Math.random() * 5) + 1;
-      console.log("numStars = " + numStars);
+      var newHtml = aboutHtmlUrl;
 
-      
-      var aboutHtmlToInsertIntoMainPage = insertProperty(aboutHtmlUrl,
-                  "star-rating",
-                  "fa fa-star-o");
+      // insert stars
+      for (var i=1; i<=numStars; i++) {
+        newHtml = insertProperty(newHtml,"star-rating" + i, "fa fa-star");
+      }
 
-          insertHtml("#main-content", aboutHtmlToInsertIntoMainPage);
-      },
+      // insert blanks
+      for (var i=numStars+1; i<=5; i++) {
+        newHtml = insertProperty(newHtml,"star-rating" + i, "fa fa-star-o");        
+      }
+    
+      // BONUS: insert number of stars
+      newHtml = insertProperty(newHtml, "numStars", numStars);
+
+      // insert page into main content
+      insertHtml("#main-content", newHtml);
+    },
     false);
 }
-
-
-
-// function buildAndShowAboutHTML () {
-  
-//     // Load home snippet page
-//     $ajaxUtils.sendGetRequest(
-//       aboutHtmlUrl,
-//       function (aboutHtml) {
-  
-//         // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
-//         // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
-//         // variable's name implies it expects.
-//         // var chosenCategoryShortName = ....
-//         // var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-//         console.log("I'm in About Page!");
-//         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
-//         // chosen category from STEP 2. Use existing insertProperty function for that purpose.
-//         // Look through this code for an example of how to do use the insertProperty function.
-//         // WARNING! You are inserting something that will have to result in a valid Javascript
-//         // syntax because the substitution of {{randomCategoryShortName}} becomes an argument
-//         // being passed into the $dc.loadMenuItems function. Think about what that argument needs
-//         // to look like. For example, a valid call would look something like this:
-//         // $dc.loadMenuItems('L')
-//         // Hint: you need to surround the chosen category short name with something before inserting
-//         // it into the home html snippet.
-//         //
-//         // var homeHtmlToInsertIntoMainPage = ....
-//         // var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,
-//         //                "randomCategoryShortName",
-//         //                "'" + chosenCategoryShortName + "'");
-  
-//         // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
-//         // Use the existing insertHtml function for that purpose. Look through this code for an example
-//         // of how to do that.
-//         // ....
-//         insertHtml("#main-content", abouHtml);
-  
-//       },
-//       false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
-//   }
 
 // Using categories data and snippets html
 // build categories view HTML to be inserted into page
@@ -303,33 +255,6 @@ function buildCategoriesViewHtml(categories,
   return finalHtml;
 }
 
-function buildAboutViewHtml(originalHtml) {
-
-  // var finalHtml = "<section class='row'>HELLO HERE!";
-  var finalHtml = originalHtml;
-  console.log("originalHtml = " + originalHtml);
-  finalHtml = insertProperty(originalHtml, "star-rating", "fa fa-star-o");
-
-
-  // // Loop over categories
-  // for (var i = 0; i < categories.length; i++) {
-  // // Insert category values
-  // var html = categoryHtml;
-  // var name = "" + categories[i].name;
-  // var short_name = categories[i].short_name;
-  // html =
-  // insertProperty(html, "name", name);
-  // html =
-  // insertProperty(html,
-  // "short_name",
-  // short_name);
-  // finalHtml += html;
-  // }
-
-  // finalHtml += "</section>";
-  return finalHtml;
-}
-
 // Builds HTML for the single category page based on the data
 // from the server
 function buildAndShowMenuItemsHTML (categoryMenuItems) {
@@ -353,13 +278,6 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
         false);
     },
     false);
-}
-
-function buildAboutViewHtml(aboutHtml) {
-  
-
-  finalHtml = "<section class='row'>";
-
 }
 
 // Using category and menu items data and snippets html
