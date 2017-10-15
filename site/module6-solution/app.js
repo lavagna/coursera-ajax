@@ -2,44 +2,44 @@
 'use strict';
 
 angular.module('LunchCheck', [])
+.controller('LunchCheckController', LunchCheckController); /*function ($scope) {*/
 
-.controller('LunchCheckController', function ($scope) {
-  $scope.lunchItems = "";
-  $scope.message = "";
-  
-  $scope.displayMessage = function () {
+  LunchCheckController.$inject = ['$scope', '$filter'];
 
-    if ($scope.lunchItems == "") {
-      $scope.message = "Please enter data first";      
-    } else {
+  function LunchCheckController($scope, $filter) {
 
-      // split string by comma
-      var arrayOfLunchItems = $scope.lunchItems.split(',');
+    $scope.lunchItems = "";
+    $scope.message = "";
+    
+    $scope.displayMessage = function () {
 
-      // num items including empty content
-      var numLunchItems = arrayOfLunchItems.length;      
+      if ($scope.lunchItems == "") {
+        $scope.message = "Please enter data first";      
+      } else {
 
-      // dis-count empty contents
-      for (var i=0; i<arrayOfLunchItems.length; i++) {
-        var lunchItem = arrayOfLunchItems[i].trim();
-        if (!lunchItem || lunchItem.length === 0) {
-          numLunchItems--;
+        // split string by comma
+        var arrayOfLunchItems = $scope.lunchItems.split(',');
+
+        // num items including empty content
+        var numLunchItems = arrayOfLunchItems.length;      
+
+        // dis-count empty contents
+        for (var i=0; i<arrayOfLunchItems.length; i++) {
+          var lunchItem = arrayOfLunchItems[i].trim();
+          if (!lunchItem || lunchItem.length === 0) {
+            numLunchItems--;
+          }
+        }
+        
+        // store message in global scope
+        if (numLunchItems == 0) {
+          $scope.message = "Please enter data first"; 
+        } else if (numLunchItems > 0 && numLunchItems <=3) {
+          $scope.message = "Enjoy!";
+        } else {
+          $scope.message = "Too much!";
         }
       }
-      
-      // store message in global scope
-      if (numLunchItems == 0) {
-        $scope.message = "Please enter data first"; 
-      } else if (numLunchItems > 0 && numLunchItems <=3) {
-        $scope.message = "Enjoy!";
-      } else {
-        $scope.message = "Too much!";
-      }
-    }
-
-  };
-
-});
-
-
+    };
+  }
 })();
