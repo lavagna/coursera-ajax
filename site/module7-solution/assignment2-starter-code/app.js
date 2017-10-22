@@ -4,7 +4,8 @@
 angular.module('ShoppingListCheckOff', [])
 .controller('ToBuyController', ToBuyController)
 .controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+.filter('dollarSignFilter', dollarSignFilter);
 
 ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
@@ -13,12 +14,12 @@ function ToBuyController(ShoppingListCheckOffService) {
   toBuy.items = ShoppingListCheckOffService.getToBuyItems();
 
   toBuy.removeItem = function(itemIndex) {
-    console.log("itemIndex = ", itemIndex);
+
+    // Get the item
     var item = ShoppingListCheckOffService.getToBuyItemAtIndex(itemIndex);
-    console.log("item to remove = " + item);
 
     // Add to the Bought list
-    ShoppingListCheckOffService.addItemToBought(item.name, item.quantity);
+    ShoppingListCheckOffService.addItemToBought(item.name, item.quantity, item.pricePerItem);
     
     // Remove from the ToBuy list
     ShoppingListCheckOffService.removeItemFromToBuy(itemIndex);
@@ -30,7 +31,6 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 
   var bought = this;
   bought.items = ShoppingListCheckOffService.getBoughtItems();
-
 }
 
 function ShoppingListCheckOffService() {
@@ -38,20 +38,21 @@ function ShoppingListCheckOffService() {
 
   // List of To-Buy items
   var toBuyItems = [
-    { name: "apples", quantity: 10 },
-    { name: "bananas", quantity: 5 },
-    { name: "cookies", quantity: 3 },
-    { name: "donuts", quantity: 10 },
-    { name: "eels", quantity: 2 }
+    { name: "apples", quantity: 10, pricePerItem: 1 },
+    { name: "bananas", quantity: 5, pricePerItem: 1.50 },
+    { name: "cookies", quantity: 3, pricePerItem: 2 },
+    { name: "donuts", quantity: 10, pricePerItem: .50 },
+    { name: "eels", quantity: 2, pricePerItem: 50 }
   ];
 
   // List of Already-Bought items
   var boughtItems = [];
 
-  service.addItemToBought = function (itemName, quantity) {
+  service.addItemToBought = function (itemName, quantity, pricePerItem) {
     var item = {
       name: itemName,
-      quantity: quantity
+      quantity: quantity,
+      price: pricePerItem
     };
     boughtItems.push(item);
   };
@@ -59,10 +60,6 @@ function ShoppingListCheckOffService() {
   service.removeItemFromToBuy = function (itemIndex) {
     toBuyItems.splice(itemIndex, 1)
   };
-
-  // service.removeItemFromBought = function (itemIndex) {
-  //   boughtItems.splice(itemIndex);
-  // };
 
   service.getToBuyItems = function () {
     return toBuyItems;
@@ -79,56 +76,17 @@ function ShoppingListCheckOffService() {
 
 }
 
+// Custom filter to replace dollar sign with triple dollar sign
+function dollarSignFilter() {
+  return function(input, target, replace) {
 
-// .controller('LunchCheckController', LunchCheckController); 
-
-  // LunchCheckController.$inject = ['$scope'];
-
-  // function LunchCheckController($scope) {
-
-  //   // initialize vars
-  //   $scope.lunchItems = "";
-  //   $scope.message = "";
-    
-  //   $scope.displayMessage = function () {
-
-  //     // split string by comma
-  //     var arrayOfLunchItems = $scope.lunchItems.split(',');
-
-  //     // num items including empty content
-  //     var numLunchItems = arrayOfLunchItems.length;      
-  
-  //     // dis-count empty contents : does NOT count empty item as an item
-  //     for (var i=0; i<arrayOfLunchItems.length; i++) {
-  //       var lunchItem = arrayOfLunchItems[i].trim();
-  //       if (!lunchItem || lunchItem.length === 0) {
-  //         numLunchItems--;
-  //       }
-  //     }
-      
-  //     // store message in global scope
-  //     if (numLunchItems == 0) {
-  //       $scope.message = "Please enter data first"; 
-  //       $scope.messageStyle = {
-  //         "color" : "red",
-  //         "border" : "solid 1px red"
-  //       }
-  //     } else if (numLunchItems > 0 && numLunchItems <=3) {
-  //       $scope.message = "Enjoy!";
-  //       $scope.messageStyle = {
-  //         "color" : "green",
-  //         "border" : "solid 1px green"
-  //       }
-  //     } else {
-  //       $scope.message = "Too much!";
-  //       $scope.messageStyle = {
-  //         "color" : "green",
-  //         "border" : "solid 1px green"
-  //       }
-  //     }
-
-  //   };
-  // }
+    console.log("input here = " + input);
+    console.log("target & replace = " + target + ", " + replace);
+    input = input.replace(target, replace);
+    console.log("after replacing input = " + input);
+    return input;
+  }
+}
 
 
 })();
