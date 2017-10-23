@@ -76,14 +76,10 @@ function ShoppingListCheckOffService() {
 
 }
 
-// Custom filter to replace dollar sign with triple dollar sign
+// Custom filter to replace dollar sign
 function dollarSignFilter() {
   return function(input, target, replace) {
-
-    console.log("input here = " + input);
-    console.log("target & replace = " + target + ", " + replace);
     input = input.replace(target, replace);
-    console.log("after replacing input = " + input);
     return input;
   }
 }
