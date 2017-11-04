@@ -18,6 +18,16 @@
     <div class="form-group narrow-button">
       <button ng-click="nid.logItems();" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
+    <br><br>
+    <div>
+      <h3>List of Found Items:</h3>
+      <ul>
+        <li ng-repeat="item in nid.foundItems">
+          Name: {{ item.name }}, Short Name: {{ item.short_name }},
+          Description: {{ item.description }}
+        </li>
+      </ul>
+    </div>
     <div ng-if="nid.errorMessage" class="error">
       Error: {{nid.errorMessage}}
     </div>

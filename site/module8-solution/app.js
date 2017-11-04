@@ -36,14 +36,14 @@ function NarrowItDownController(MenuSearchService) {
     
       promise.then(function (response) {
 
-        var foundItems = [];
+        nid.foundItems = [];
         angular.forEach(response.data, function(value, key) {
           angular.forEach(value, function(value, key) {
 
             // console.log("value.description: " + value.description);
             
             if ((value.description).indexOf(searchTextLocal) != -1) {
-              foundItems.push(value);
+              nid.foundItems.push(value);
             }
 
           });
@@ -54,7 +54,7 @@ function NarrowItDownController(MenuSearchService) {
         });
 
         // console.log(response.data);
-        console.log(foundItems);
+        console.log(nid.foundItems);
 
       })
       .catch(function (error) {
