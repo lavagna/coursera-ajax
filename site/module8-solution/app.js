@@ -27,33 +27,35 @@ function NarrowItDownController(MenuSearchService) {
   nid.logItems = function () {
     console.log("SEARCH TEXT 2 = " + nid.searchText);
     
+    // Initialize variables
+    nid.errorMessage = "";
+    nid.foundItems = [];
+
     var searchTextLocal = angular.lowercase(nid.searchText);
     var promise = MenuSearchService.getMatchedMenuItems();
 
     if (!searchTextLocal) {
+      console.log("search text is empty!");
       nid.errorMessage = "Nothing found!";
     } else {
     
       promise.then(function (response) {
 
-        nid.foundItems = [];
+        
         angular.forEach(response.data, function(value, key) {
           angular.forEach(value, function(value, key) {
-
-            // console.log("value.description: " + value.description);
             
             if ((value.description).indexOf(searchTextLocal) != -1) {
               nid.foundItems.push(value);
             }
 
           });
-          
-          // if ((value.description).indexOf(searchText) != -1) {
-          //   foundItems.push(value);
-          // }
         });
 
-        // console.log(response.data);
+        if (nid.foundItems.length === 0) {
+          console.log("found array is 0!");
+          nid.errorMessage = "Nothing found!";
+        }
         console.log(nid.foundItems);
 
       })
