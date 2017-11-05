@@ -13,9 +13,10 @@ function FoundItemsDirective() {
     templateUrl: 'foundList.html',
     scope: {
       list: '<myList',
-      // itemsFound: '<',
       onRemove: '&'
     },
+
+    // NOTHING WORKS!! 
     // controller: NarrowItDownController,
     // controllerAs: 'list',
     // bindToController: true
