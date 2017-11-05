@@ -20,8 +20,8 @@
     </div>
     <br><br>
     <div>
-      <h3>List of Found Items:</h3>
-        <found-items-list my-list="list"></found-items-list>
+        <found-items-list my-list="list" 
+        on-remove="list.removeItem(index)"></found-items-list>
     </div>
     <!-- <div ng-if="list.errorMessage" class="error">
       Error: {{list.errorMessage}}

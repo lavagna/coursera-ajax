@@ -12,10 +12,11 @@ function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundList.html',
     scope: {
-      list: '<myList'
-      // onRemove: '&'
+      list: '<myList',
+      // itemsFound: '<',
+      onRemove: '&'
     },
-    // controller: NarrowItDownDirectiveController,
+    // controller: NarrowItDownController,
     // controllerAs: 'list',
     // bindToController: true
   };
@@ -24,6 +25,12 @@ function FoundItemsDirective() {
 }
 
 function NarrowItDownDirectiveController() {
+
+  // list.removeItem = function (itemIndex) {
+  //   console.log("'this' is: ", this);
+  //   list.found.splice(itemIndex, 1);
+  // };
+
   var list = this;
 
   list.getFoundItemsFromDirective = function(searchText) {
