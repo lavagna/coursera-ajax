@@ -20,21 +20,14 @@
     </div>
     <br><br>
     <div>
-      <!-- <found-items-list items="list.found"></found-items-list> -->
       <h3>List of Found Items:</h3>
-      <ul>
-        <!-- <li ng-repeat="item in list.found"> -->
-          <found-items-list></found-items-list>
-          <!-- Name: {{ item.name }}, Short Name: {{ item.short_name }},
-          Description: {{ item.description }} -->
-        <!-- </li> -->
-      </ul>
+        <found-items-list my-list="list"></found-items-list>
     </div>
     <div ng-if="list.errorMessage" class="error">
       Error: {{list.errorMessage}}
     </div>
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...."></found-items>
+    <!-- <found-items found-items="...." on-remove="...."></found-items> -->
   </div>
 
 </body>

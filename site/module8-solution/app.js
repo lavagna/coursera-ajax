@@ -10,11 +10,11 @@ angular.module('NarrowItDownApp', [])
 
 function FoundItemsDirective() {
   var ddo = {
-    templateUrl: 'foundList.html' //,
-    // scope: {
-    //   items: '<'//,
-    //   // onRemove: '&'
-    // },
+    templateUrl: 'foundList.html',
+    scope: {
+      list: '<myList'
+      // onRemove: '&'
+    },
     // controller: NarrowItDownDirectiveController,
     // controllerAs: 'list',
     // bindToController: true
@@ -63,12 +63,12 @@ function NarrowItDownDirectiveController() {
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var list = this;
-  list.found = [];
   
   list.getFoundItems = function(searchText) {
 
     // Initialize variables
     list.errorMessage = "";
+    list.found = [];
 
     var searchTextLocal = angular.lowercase(searchText);
     console.log("searchTextLoal = " + searchTextLocal);
@@ -77,29 +77,28 @@ function NarrowItDownController(MenuSearchService) {
       console.log("search text is empty!");
       list.errorMessage = "Nothing found!";
     } else {
-    
+   
       var promise = MenuSearchService.getMatchedMenuItems(searchTextLocal);
       promise.then(function (response) {  
         console.log("Contoller: response = " + response);
 
         list.found = response;
-  
         if (list.found.length === 0) {
           console.log("found array is 0!");
           list.errorMessage = "Nothing found!";
         }
-
-        // return list.found;
       })
       .catch(function (error) {
         console.log(error);
       })
     } // end else
 
+  }; // end getFoundItems()
+
+  list.removeItem = function (itemIndex) {
+    console.log("'this' is: ", this);
+    list.found.splice(itemIndex, 1);
   };
-
-  
-
 
 }; // end controller
 
@@ -111,14 +110,15 @@ function MenuSearchService($http, ApiBasePath) {
 
   service.getMatchedMenuItems = function(searchTerm) {
 
+    // Wipe out array
+    var foundItems = [];
+
     return $http({
       method: "GET",
       url: (ApiBasePath + "/menu_items.json")
     }).then(function (result) {
 
       // process result and only keep items that match
-      var foundItems = [];
-  
       angular.forEach(result.data, function(value, key) {
         angular.forEach(value, function(value, key) {
           
@@ -133,7 +133,7 @@ function MenuSearchService($http, ApiBasePath) {
       return foundItems;
     });
 
-  };
+  }; // end getMatchedMenuItems
 
 }
 

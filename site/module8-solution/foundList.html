@@ -1,8 +1,8 @@
-<!-- <h3>List of Found Items:</h3>
-<ul> -->
-  <li ng-repeat="item in list.found"> 
-<!-- <li>              -->
+<!-- <h3>List of Found Items:</h3>-->
+<ul>
+  <li ng-repeat="item in list.found">
     Name: {{ item.name }}, Short Name: {{ item.short_name }},
     Description: {{ item.description }}
+    <button ng-click="list.removeItem($index);">Remove Item</button>
   </li>
-<!-- </ul> -->
+</ul>
