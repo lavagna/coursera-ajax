@@ -3,7 +3,7 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
-.factory('NarrowItDownFactory', NarrowItDownFactory)
+// .factory('NarrowItDownFactory', NarrowItDownFactory)
 .service('MenuSearchService', MenuSearchService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
 .directive('foundItemsList', FoundItemsDirective);
@@ -18,6 +18,7 @@ function FoundItemsDirective() {
 
     // NOTHING WORKS!! 
     // controller: NarrowItDownController,
+    // controller: 'NarrowItDownController as list',
     // controllerAs: 'list',
     // bindToController: true
   };
@@ -25,60 +26,17 @@ function FoundItemsDirective() {
   return ddo;
 }
 
-function NarrowItDownDirectiveController() {
-
-  // list.removeItem = function (itemIndex) {
-  //   console.log("'this' is: ", this);
-  //   list.found.splice(itemIndex, 1);
-  // };
-
-  var list = this;
-
-  list.getFoundItemsFromDirective = function(searchText) {
-
-    // Initialize variables
-    list.errorMessage = "";
-    list.found = [];
-
-    var searchTextLocal = angular.lowercase(searchText);
-    console.log("searchTextLoal = " + searchTextLocal);
-  
-    if (!searchTextLocal) {
-      console.log("search text is empty!");
-      list.errorMessage = "Nothing found!";
-    } else {
-    
-      var promise = MenuSearchService.getMatchedMenuItems(searchTextLocal);
-
-      promise.then(function (response) {
-  
-        list.found = response;
-  
-        if (list.found.length === 0) {
-          console.log("found array is 0!");
-          list.errorMessage = "Nothing found!";
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    } // end else
-
-  }
-  return list;
-}
-
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var list = this;
   
-  list.getFoundItems = function(searchText) {
+    list.getFoundItems = function() {
 
     // Initialize variables
     list.errorMessage = "";
     list.found = [];
 
-    var searchTextLocal = angular.lowercase(searchText);
+    var searchTextLocal = angular.lowercase(list.searchText);
     console.log("searchTextLoal = " + searchTextLocal);
   
     if (!searchTextLocal) {
@@ -110,7 +68,7 @@ function NarrowItDownController(MenuSearchService) {
 
 }; // end controller
 
- 
+
 
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
