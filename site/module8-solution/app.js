@@ -11,16 +11,22 @@ angular.module('NarrowItDownApp', [])
 function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundList.html',
+
+    // Isolate scope with directive property called dirList,
+    // bound to myList (my-list attribute in HTML)
     scope: {
-      list: '<myList',
+      dirList: '<myList',
+      title: '@title',  // can be interpolated inside double curly braces in directive template
       onRemove: '&'
     },
 
     // NOTHING WORKS!! 
-    // controller: NarrowItDownController,
-    // controller: 'NarrowItDownController as list',
-    // controllerAs: 'list',
-    // bindToController: true
+    // The scope property referenced inside directive is called dirList. 
+    // But if we declare a controller here, with controllerAs syntax, wouldn't we need to
+    // reference that as 'list' inside the directive? CONFUSING.
+    controller: NarrowItDownController,
+    controllerAs: 'list',
+    bindToController: true
   };
   
   return ddo;
@@ -29,12 +35,14 @@ function FoundItemsDirective() {
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var list = this;
-  
-    list.getFoundItems = function() {
+
+  list.getFoundItems = function() {
 
     // Initialize variables
     list.errorMessage = "";
     list.found = [];
+    
+    list.title = "List of Found Items (" + list.found.length + ") items";
 
     var searchTextLocal = angular.lowercase(list.searchText);
     console.log("searchTextLoal = " + searchTextLocal);
@@ -53,6 +61,8 @@ function NarrowItDownController(MenuSearchService) {
           console.log("found array is 0!");
           list.errorMessage = "Nothing found!";
         }
+        list.title = "List of Found Items (" + list.found.length + ") items";
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -64,6 +74,8 @@ function NarrowItDownController(MenuSearchService) {
   list.removeItem = function (itemIndex) {
     console.log("'this' is: ", this);
     list.found.splice(itemIndex, 1);
+    list.title = "List of Found Items (" + list.found.length + ") items";
+    
   };
 
 }; // end controller

@@ -1,13 +1,16 @@
-<h3>List of Found Items:</h3>
+<h3>{{ title }}</h3>
 <ul>
-  <li ng-repeat="item in list.found">
+  <!-- <li ng-repeat="item in dirList.found"> -->
+  <li ng-repeat="item in dirList.found">
     Name: {{ item.name }}, Short Name: {{ item.short_name }},
     Description: {{ item.description }}
-    <button ng-click="list.removeItem($index);">Remove Item</button>
+    <button ng-click="dirList.removeItem($index);">Remove Item</button>
+    <!-- <button ng-click="dirList.removeItem($index);">Remove Item</button> -->
     <!-- NOTHING WORKS! -->
     <!-- <button ng-click="list.onRemove({index: $index});">Remove Item</button> -->
 </li>
 </ul>
-<div ng-if="list.errorMessage" class="error">
-    Error: {{list.errorMessage}}
+<!-- <div ng-if="dirList.errorMessage" class="error"> -->
+<div ng-if="dirList.errorMessage" class="error">
+    Error: {{dirList.errorMessage}}
 </div>
