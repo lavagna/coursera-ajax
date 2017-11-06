@@ -15,15 +15,11 @@ function FoundItemsDirective() {
     // Isolate scope with directive property called dirList,
     // bound to myList (my-list attribute in HTML)
     scope: {
-      dirList: '<myList',
+      items: '<',
       title: '@title',  // can be interpolated inside double curly braces in directive template
       onRemove: '&'
     },
 
-    // NOTHING WORKS!! 
-    // The scope property referenced inside directive is called dirList. 
-    // But if we declare a controller here, with controllerAs syntax, wouldn't we need to
-    // reference that as 'list' inside the directive? CONFUSING.
     controller: NarrowItDownController,
     controllerAs: 'list',
     bindToController: true
@@ -40,9 +36,10 @@ function NarrowItDownController(MenuSearchService) {
 
     // Initialize variables
     list.errorMessage = "";
-    list.found = [];
+    // list.found = [];
+    list.items = [];
     
-    list.title = "List of Found Items (" + list.found.length + ") items";
+    list.title = "List of Found Items (" + list.items.length + ") items";
 
     var searchTextLocal = angular.lowercase(list.searchText);
     console.log("searchTextLoal = " + searchTextLocal);
@@ -56,12 +53,19 @@ function NarrowItDownController(MenuSearchService) {
       promise.then(function (response) {  
         console.log("Contoller: response = " + response);
 
-        list.found = response;
-        if (list.found.length === 0) {
+        // list.found = response;
+        list.items = response;
+
+        console.log("list.items = " + list.items);
+        // console.log("this = " + this);
+        
+        // if (list.found.length === 0) {
+        if (list.items.length === 0) {
           console.log("found array is 0!");
           list.errorMessage = "Nothing found!";
         }
-        list.title = "List of Found Items (" + list.found.length + ") items";
+        list.title = "List of Found Items (" + list.items.length + ") items";
+        // list.title = "List of Found Items (" + list.found.length + ") items";
         
       })
       .catch(function (error) {
@@ -73,8 +77,10 @@ function NarrowItDownController(MenuSearchService) {
 
   list.removeItem = function (itemIndex) {
     console.log("'this' is: ", this);
-    list.found.splice(itemIndex, 1);
-    list.title = "List of Found Items (" + list.found.length + ") items";
+    list.items.splice(itemIndex, 1);
+    list.title = "List of Found Items (" + list.items.length + ") items";
+    // list.found.splice(itemIndex, 1);
+    // list.title = "List of Found Items (" + list.found.length + ") items";
     
   };
 
