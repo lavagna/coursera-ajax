@@ -22,6 +22,9 @@
     <div>
         <found-items-list items="list.items" title="{{list.title}}" on-remove="list.removeItem(index)"></found-items-list>
     </div>
+    <div ng-if="list.errorMessage" class="error">
+        Error: {{list.errorMessage}}
+    </div>
   </div>
 
 </body>
