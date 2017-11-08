@@ -3,7 +3,6 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
-// .factory('NarrowItDownFactory', NarrowItDownFactory)
 .service('MenuSearchService', MenuSearchService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
 .directive('foundItemsList', FoundItemsDirective);
@@ -12,8 +11,8 @@ function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundList.html',
 
-    // Isolate scope with directive property called dirList,
-    // bound to myList (my-list attribute in HTML)
+    // Isolate scope with directive property called items,
+    // bound to items (items attribute in index.html)
     scope: {
       items: '<',
       title: '@title',  // can be interpolated inside double curly braces in directive template
@@ -36,58 +35,41 @@ function NarrowItDownController(MenuSearchService) {
 
     // Initialize variables
     list.errorMessage = "";
-    // list.found = [];
-    list.items = [];
-    
+    list.items = [];  
     list.title = "List of Found Items (" + list.items.length + ") items";
 
+    // Local variable for lowercased search text
     var searchTextLocal = angular.lowercase(list.searchText);
-    console.log("searchTextLoal = " + searchTextLocal);
   
     if (!searchTextLocal) {
-      console.log("search text is empty!");
       list.errorMessage = "Nothing found!";
     } else {
    
+      // Call the service function for list of matched items
       var promise = MenuSearchService.getMatchedMenuItems(searchTextLocal);
       promise.then(function (response) {  
-        console.log("Contoller: response = " + response);
 
-        // list.found = response;
         list.items = response;
-
-        console.log("list.items = " + list.items);
-        // console.log("this = " + this);
         
-        // if (list.found.length === 0) {
         if (list.items.length === 0) {
           console.log("found array is 0!");
           list.errorMessage = "Nothing found!";
         }
-        list.title = "List of Found Items (" + list.items.length + ") items";
-        // list.title = "List of Found Items (" + list.found.length + ") items";
-        
+        list.title = "List of Found Items (" + list.items.length + ") items";        
       })
       .catch(function (error) {
         console.log(error);
       })
     } // end else
-
   }; // end getFoundItems()
 
   list.removeItem = function (itemIndex) {
-    console.log("'this' is: ", this);
     list.items.splice(itemIndex, 1);
     list.title = "List of Found Items (" + list.items.length + ") items";
-    // list.found.splice(itemIndex, 1);
-    // list.title = "List of Found Items (" + list.found.length + ") items";
-    
   };
-
 }; // end controller
 
-
-
+// Service function
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
   var service = this;
@@ -112,20 +94,9 @@ function MenuSearchService($http, ApiBasePath) {
         });
       });
   
-      console.log("INSIDE getMatchedMenuItems, foundItems = " + foundItems);
       // return processed items
       return foundItems;
     });
-
   }; // end getMatchedMenuItems
-
 }
-
-function NarrowItDownFactory() {
-  var factory = function() {
-    return new NarrowItDownController();
-  };
-  return factory;
-}
-
 })();
