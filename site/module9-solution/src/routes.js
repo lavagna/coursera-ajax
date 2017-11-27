@@ -31,13 +31,19 @@
         }
       })
     
-    //   .state('mainList.itemDetail', {
-    //     url: '/item-detail/{itemId}',
-    //     templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-    //     controller: "ItemDetailController as itemDetail"
-    //   });
+      .state('categoriesList.itemDetail', {
+        url: '/item-detail/{itemId}',
+        templateUrl: 'src/templates/item-detail.template.html',
+        controller: "ItemDetailController as itemDetail"
+        // resolve: {
+        //   items: ['$stateParams', 'MenuDataService', 
+        //     function ($stateParams, MenuDataService) {
+        //     return MenuDataService.getItemsForCategory($stateParams.itemId);
+        //   }]
+        // }
+      });
     
-    }
+    };
     
     })();
     

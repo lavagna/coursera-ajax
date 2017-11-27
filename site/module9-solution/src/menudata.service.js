@@ -6,66 +6,42 @@ angular.module('data')
 .service('MenuDataService', MenuDataService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
-// Service function
+// Service functions
 MenuDataService.$inject = ['$http', 'ApiBasePath'];
 function MenuDataService($http, ApiBasePath) {
   var service = this;
 
-  service.getAllCategories = function() {
+  var items = [];
 
-    // Wipe out array
-    // var categories = [];
+  var allItems = [];
 
-    return $http({
-      method: "GET",
-      url: (ApiBasePath + "/categories.json")
-    })
-    
-    // .then(function (result) {
+    // Returns all categories
+    service.getAllCategories = function() {
+       
+       items = $http({
+            method: "GET",
+            url: (ApiBasePath + "/categories.json")
+            });
 
-    //     // categories = result.data;
-    //     return categories;
-    // });
+        return items;
+    } // end getAllCategories
+        
+    // Returns items for a category. Appends category shortname to url
+    // service.getItemsForCategory = function (categoryShortName) {
+    service.getItemsForCategory = function (categoryShortName) {    
 
-  }; // end getAllCategories
+        // categoryShortName = "A1";
+        allItems = $http({
+            method: "GET",
+            url: (ApiBasePath + "/menu_items.json"),
+            params: {
+                category: categoryShortName
+            }
+        });
+
+        return allItems;
+    } // end getAllCategories
 }
-
-// MenuDataService.$inject = ['$http', 'ApiBasePath'];
-// function MenuDataService($http, ApiBasePath) {
-
-//     var service = this;
-
-//     // list of categories
-//     var categories = [];
-
-//     // list of items
-//     var items = [];
-
-//     // Return all categories using the $http service
-//     service.getAllCategories = function () {
-
-//         categories = $http({
-//             method: "GET",
-//             url: (ApiBasePath + "/categories.json")    
-//         });
-//         console.log("categories returned =" + categories);
-//         return categories;
-//     }
-
-//     // Append category shortname to url
-//     service.getItemsForCategory = function (categoryShortName) {
-
-//         items = $http({
-//             method: "GET",
-//             url: (ApiBasePath + "/menu_items.json"),
-//             params: {
-//                 category: categoryShortName
-//             }
-//         });
-
-//         return items;
-//     }
-// }
 
 })();
 
