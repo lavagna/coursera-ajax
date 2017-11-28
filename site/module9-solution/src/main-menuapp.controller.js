@@ -4,11 +4,12 @@
   angular.module('data')
   .controller('MainMenuAppController', MainMenuAppController);
 
-  MainMenuAppController.$inject = ['MenuDataService','items'];
-  function MainMenuAppController(MenuDataService, items) {
+  // MainMenuAppController.$inject = ['MenuDataService','items'];
+  MainMenuAppController.$inject = ['items'];
+  function MainMenuAppController(items) {
     var categoriesList = this;
     categoriesList.items = items.data;
-    console.log("ITEMS.DATA = " + categoriesList.items);
+    console.log("MainMenuAppController List of categories = " + categoriesList.items);
   };
   
   })();

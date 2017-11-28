@@ -24,6 +24,7 @@
         url: '/categories',
         templateUrl: 'src/templates/main-categories.template.html',
         controller: 'MainMenuAppController as categoriesList',
+        // wait for items to get resolved before going to this state
         resolve: {
           items: ['MenuDataService', function (MenuDataService) {
             return MenuDataService.getAllCategories();
@@ -32,15 +33,16 @@
       })
     
       .state('categoriesList.itemDetail', {
-        url: '/item-detail/{itemId}',
-        templateUrl: 'src/templates/item-detail.template.html',
-        controller: "ItemDetailController as itemDetail"
-        // resolve: {
-        //   items: ['$stateParams', 'MenuDataService', 
-        //     function ($stateParams, MenuDataService) {
-        //     return MenuDataService.getItemsForCategory($stateParams.itemId);
-        //   }]
-        // }
+        url: '/item-detail/{shortName}',
+        templateUrl: 'src/templates/main-items.template.html',
+        controller: "ItemDetailController as itemDetail",
+        // wait for categoryitems to get resolved before going to this state
+        resolve: {
+          categoryItems: ['$stateParams', 'MenuDataService', 
+            function ($stateParams, MenuDataService) {
+            return MenuDataService.getItemsForCategory($stateParams.shortName);
+          }]
+        }
       });
     
     };
