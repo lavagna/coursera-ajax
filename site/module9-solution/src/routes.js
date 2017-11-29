@@ -19,7 +19,6 @@
         templateUrl: 'src/templates/home.template.html'
       })
     
-      // Premade list page
       .state('categoriesList', {
         url: '/categories',
         templateUrl: 'src/templates/main-categories.template.html',
@@ -32,7 +31,8 @@
         }
       })
     
-      .state('categoriesList.itemDetail', {
+      // .state('categoriesList.itemDetail', {
+      .state('itemDetail', {
         url: '/item-detail/{shortName}',
         templateUrl: 'src/templates/main-items.template.html',
         controller: "ItemDetailController as itemDetail",

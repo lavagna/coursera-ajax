@@ -8,7 +8,7 @@ angular.module('data')
 ItemDetailController.$inject = ['categoryItems'];
 function ItemDetailController(categoryItems) {
     var itemDetail = this;
-    itemDetail.allItems = categoryItems.data.menu_items;
+    itemDetail.allItems = categoryItems.data;
     console.log("itemDetail.allItems = " + itemDetail.allItems);
     
     // Get the current item
