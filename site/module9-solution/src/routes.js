@@ -38,7 +38,7 @@
         controller: "ItemDetailController as itemDetail",
         // wait for categoryitems to get resolved before going to this state
         resolve: {
-          categoryItems: ['$stateParams', 'MenuDataService', 
+          items: ['$stateParams', 'MenuDataService', 
             function ($stateParams, MenuDataService) {
             return MenuDataService.getItemsForCategory($stateParams.shortName);
           }]
