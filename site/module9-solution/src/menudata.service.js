@@ -11,16 +11,17 @@ MenuDataService.$inject = ['$http', 'ApiBasePath'];
 function MenuDataService($http, ApiBasePath) {
   var service = this;
 
-    // var categories = [];
-    var allItems = [];
+    var items = [];
 
     // Returns all categories
     service.getAllCategories = function() {
        
-        return $http({
+        items = $http({
             method: "GET",
             url: (ApiBasePath + "/categories.json")
         });
+
+        return items;
 
     } // end getAllCategories
         

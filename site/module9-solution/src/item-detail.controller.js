@@ -4,31 +4,16 @@
 angular.module('data')
 .controller('ItemDetailController', ItemDetailController);
 
-// 'items' is defined inside the resolve of router
-ItemDetailController.$inject = ['items'];
-function ItemDetailController(items) {
+ItemDetailController.$inject = ['categoryItems'];
+function ItemDetailController(categoryItems) {
+
     var itemDetail = this;
-    itemDetail.items = items.data.menu_items;
-    console.log("itemDetail.items = " + itemDetail.items);
-    
-    // Get the current item
-    // var item = items.data[$stateParams.itemId];
+    itemDetail.items = categoryItems.data.menu_items;
 
-    // // Get its shortname
-    // var shortName = item.short_name;
-
-    // // Get list of items
-    // var listOfItems = [];
-    // listOfItems = MenuDataService.getItemsForCategory(shortName);
-
-    // console.log("list of items = " + listOfItems.data);
-    // itemDetail.allItems = listOfItems.data;
-
-    // itemDetail.name = item.name;
-    // itemDetail.description = item.description;
-
-    // console.log("itemDetail.name = " + itemDetail.name);
-
+    // Test print items in the category
+    for ( var i=0; i< itemDetail.items.length; i++) {
+        console.log("NAME: " + itemDetail.items[i].name);
+    }
 }
 
 

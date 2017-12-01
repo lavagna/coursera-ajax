@@ -31,17 +31,22 @@
         }
       })
     
-      // .state('categoriesList.itemDetail', {
-      .state('itemDetail', {
-        url: '/item-detail/{shortName}',
-        templateUrl: 'src/templates/main-items.template.html',
+      .state('categoriesList.itemDetail', {
+        url: '/item-detail/{itemId}',
+        templateUrl: 'src/templates/item-detail.template.html',
         controller: "ItemDetailController as itemDetail",
-        // wait for categoryitems to get resolved before going to this state
-        resolve: {
-          items: ['$stateParams', 'MenuDataService', 
+
+        // Resolve now makes a call to service func
+         resolve: {
+          categoryItems: ['$stateParams', 'MenuDataService', 
             function ($stateParams, MenuDataService) {
-            return MenuDataService.getItemsForCategory($stateParams.shortName);
-          }]
+              return MenuDataService.getAllCategories()
+                .then(function(categories) {
+                  var category = categories.data[$stateParams.itemId];
+                  console.log("Inside resolve,shortname = " + category.short_name);
+                  return MenuDataService.getItemsForCategory(category.short_name);
+                });
+            }]
         }
       });
     

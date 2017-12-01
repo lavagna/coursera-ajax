@@ -1,10 +1,9 @@
 
 <!-- display item names in a list -->
-<h3>THIS IS THE ITEMS LIST PAGE</h3>
+<h3>THIS IS THE ITEMS LIST FOR SELECTED CATEGORY</h3>
 
-  <ul>
-      <li ng-repeat="item in $ctrl.items">
-        {{ item.name }}
-      </li>
+<ul>
+    <li ng-repeat="item in itemDetail.items">
+      {{ item.name }}
+    </li>
   </ul>
-  
