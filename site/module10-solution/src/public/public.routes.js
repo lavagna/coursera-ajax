@@ -51,6 +51,19 @@ function routeConfig ($stateProvider) {
       //     return MenuService.getCategories();
       //   }]
       // }
-    });
+    })
+    .state('public.signUp', {
+      url: '/signUp',
+      templateUrl: 'src/public/signup/signup.html'//,
+      // controller: 'MenuController',
+      // controllerAs: 'menuCtrl',
+      // resolve: {
+      //   menuCategories: ['MenuService', function (MenuService) {
+      //     return MenuService.getCategories();
+      //   }]
+      // }
+    })   
+    
+    ;
 }
 })();
