@@ -12,7 +12,7 @@ function RegistrationController(SignUpService) {
     reg.submit = function () {
 
         // Save my info in service
-        SignUpService.saveMyInfo(reg.user.username, reg.user.email, reg.user.phone);
+        SignUpService.saveMyInfo(reg.user.firstname, reg.user.lastname, reg.user.email, reg.user.phone);
 
         reg.completed = true;
     };

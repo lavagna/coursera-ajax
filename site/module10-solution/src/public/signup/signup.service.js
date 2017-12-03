@@ -9,17 +9,19 @@ function SignUpService() {
 
     // My Info
      service.myInformation  = {
-      username: '',
+      firstname: '',
+      lastname: '',
       email: '',
       phone: ''  
     };
 
-    service.saveMyInfo = function (username, email, phone) {
-        service.myInformation.username = username;
+    service.saveMyInfo = function (firstname, lastname, email, phone) {
+        service.myInformation.firstname = firstname;
+        service.myInformation.lastname = lastname;
         service.myInformation.email = email;
         service.myInformation.phone = phone;
 
-        console.log("Inside SERVICE  email = " + service.myInformation.email);
+        // console.log("Inside SERVICE  email = " + service.myInformation.email);
     }
 }
 
