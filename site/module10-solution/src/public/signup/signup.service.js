@@ -12,14 +12,16 @@ function SignUpService() {
       firstname: '',
       lastname: '',
       email: '',
-      phone: ''  
+      phone: '' ,
+      menuShortName: ''
     };
 
-    service.saveMyInfo = function (firstname, lastname, email, phone) {
+    service.saveMyInfo = function (firstname, lastname, email, phone, menuShortName) {
         service.myInformation.firstname = firstname;
         service.myInformation.lastname = lastname;
         service.myInformation.email = email;
         service.myInformation.phone = phone;
+        service.myInformation.menuShortName = menuShortName;
 
         // console.log("Inside SERVICE  email = " + service.myInformation.email);
     }
