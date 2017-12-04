@@ -8,7 +8,7 @@
 
         <!-- FIRST NAME -->
         <input type="text" name="firstname" placeholder="Enter first name"
-               ng-model="regCtrl.firstname"
+               ng-model="regCtrl.firstName"
                required
                minlength="2"
                ng-maxlength="20">
@@ -27,7 +27,7 @@
                 
         <!-- LAST NAME -->
         <input type="text" name="lastname" placeholder="Enter last name"
-            ng-model="regCtrl.lastname"
+            ng-model="regCtrl.lastName"
             required
             minlength="2"
             ng-maxlength="20">
@@ -82,11 +82,11 @@
 
 <div id="info" ng-if="regCtrl.completed">
 Your information has been saved.
-<!-- First Name: {{ regCtrl.firstname}} <br>
+First Name: {{ regCtrl.firstname}} <br>
 Last Name: {{ regCtrl.lastname}} <br>
 Email: {{ regCtrl.email}} <br>
 Phone: {{ regCtrl.phone }} <br>
-Favorite Menu: {{ regCtrl.menuShortName }} <br> -->
+Favorite Menu: {{ regCtrl.menuShortName }} <br>
 </div>
 
 <div id="error" ng-if="!regCtrl.completed">

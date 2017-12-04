@@ -1,9 +1,19 @@
 
-<ng-if "!infoCtrl.isSignedUp">
+<span ng-if="!infoCtrl.isSignedUp">
     Not Signed Up Yet. 
     <a ui-sref="public.signUp">Sign up Now!</a>
-    
-</ng-if>
+</span>
+
+
+<span ng-if="infoCtrl.isSignedUp">
+    First Name: {{ infoCtrl.myInformation.firstname }} <br>
+    Last Name: {{ infoCtrl.myInformation.lastname }} <br>
+    Email: {{ infoCtrl.myInformation.email }} <br>
+    Phone: {{ infoCtrl.myInformation.phone }} <br>
+    Favorite Food: {{ infoCtrl.myInformation.menuShortName }} <br>
+
+</span>
+
 <!-- <div class="menu-item-photo">
     <div>{{$infoCtrl.menuItem.short_name}}</div>
     <img class="img-responsive" width="250" height="150" ng-src="{{$ctrl.basePath}}/images/{{$ctrl.menuItem.short_name}}.jpg" alt="{{$ctrl.menuItem.name}}">
