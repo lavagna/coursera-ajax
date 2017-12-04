@@ -4,11 +4,11 @@
 
 <fieldset>
     
-    <form name='regForm' novalidate>    <!-- turn off native browser validation -->
+    <form name='regCtrl.regForm' novalidate>    <!-- turn off native browser validation -->
 
         <!-- FIRST NAME -->
         <input type="text" name="firstname" placeholder="Enter first name"
-               ng-model="reg.user.firstname"
+               ng-model="regCtrl.firstname"
                required
                minlength="2"
                ng-maxlength="20">
@@ -27,10 +27,10 @@
                 
         <!-- LAST NAME -->
         <input type="text" name="lastname" placeholder="Enter last name"
-        ng-model="reg.user.lastname"
-        required
-        minlength="2"
-        ng-maxlength="20">
+            ng-model="regCtrl.lastname"
+            required
+            minlength="2"
+            ng-maxlength="20">
 
         {{ reg.user.lastname }}
                 
@@ -46,8 +46,8 @@
 
         <!-- EMAIL -->
         <input type="email" name="email" placeholder="Email"
-        ng-model="reg.user.email"
-        required>
+            ng-model="regCtrl.email"
+            required>
         <span ng-if="regForm.email.$invalid && regForm.email.$touched">
             Must be a valid email address: handle@domain format
         </span>
@@ -55,8 +55,8 @@
 
         <!-- PHONE NUMBER -->
         <input type="text" name="phone" placeholder="Phone ###-###-####"
-        ng-model="reg.user.phone"
-        pattern="(\d{3})-(\d{3})-(\d{4})">
+            ng-model="regCtrl.phone"
+            pattern="(\d{3})-(\d{3})-(\d{4})">
         <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
             Phone must be in the format ###-###-####.
         </span>
@@ -64,24 +64,31 @@
 
         <!-- MENU ITEM -->
         <input type="text" name="menuShortName" placeholder="Favorite Menu (i.e. L16)"
-        ng-model="reg.user.menuShortName">
+            ng-model="regCtrl.menuShortName">
+        <span ng-if="!regCtrl.valid() && regForm.menuShortName.$touched">
+            No such menu number exists.
+        </span>
         <br>
 
         <button
         ng-disabled="regForm.$invalid"
-        ng-click="reg.submit()">Submit</button>
+        ng-click="regCtrl.submit()">Submit</button>
 
         <div style="margin-top: 10px;">
-            Form valid? {{ regForm.$valid }}
+            Form valid? {{ regCtrl.regForm.$valid }}
         </div>
     </form>
 </fieldset>
 
-<div id="info" ng-if="reg.completed">
-First Name: {{ reg.user.firstname}} <br>
-Last Name: {{ reg.user.lastname}} <br>
-Email: {{ reg.user.email}} <br>
-Phone: {{ reg.user.phone }} <br>
-Favorite Menu: {{ reg.user.menuShortName }} <br>
+<div id="info" ng-if="regCtrl.completed">
+First Name: {{ regCtrl.firstname}} <br>
+Last Name: {{ regCtrl.lastname}} <br>
+Email: {{ regCtrl.email}} <br>
+Phone: {{ regCtrl.phone }} <br>
+Favorite Menu: {{ regCtrl.menuShortName }} <br>
+</div>
+
+<div id="error" ng-if="!regCtrl.completed">
+{{ regCtrl.error}} <br>
 
 </div>

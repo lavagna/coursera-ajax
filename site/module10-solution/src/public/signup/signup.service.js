@@ -4,11 +4,12 @@
 angular.module('public')
 .service('SignUpService', SignUpService);
 
-function SignUpService() {
+SignUpService.$inject = ['$http', 'ApiPath'];
+function SignUpService($http, ApiPath) {
     var service = this;
 
     // My Info
-     service.myInformation  = {
+    service.myInformation  = {
       firstname: '',
       lastname: '',
       email: '',
@@ -16,15 +17,23 @@ function SignUpService() {
       menuShortName: ''
     };
 
-    service.saveMyInfo = function (firstname, lastname, email, phone, menuShortName) {
+    service.saveMyInfo = function (firstname, lastname, email, phone) {
         service.myInformation.firstname = firstname;
         service.myInformation.lastname = lastname;
         service.myInformation.email = email;
         service.myInformation.phone = phone;
-        service.myInformation.menuShortName = menuShortName;
+    }
 
-        // console.log("Inside SERVICE  email = " + service.myInformation.email);
+    service.saveShortName = function (shortName) {
+        service.myInformation.menuShortName = shortName;
+    }
+
+    service.testShortName = function (shortName) {
+        return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function(response) {
+            return response.data;
+          });
     }
 }
+
 
 })();

@@ -6,15 +6,33 @@ angular.module('public')
 
 RegistrationController.$inject = ['SignUpService'];
 function RegistrationController(SignUpService) {
-    var reg = this;
-    
-    // For displaying info at the bottom upon successful submission
-    reg.submit = function () {
+    var $ctrl = this;
+    $ctrl.firstName = '';
+    $ctrl.lastName = '';
+    $ctrl.email = '';
+    $ctrl.phone = '';
+    $ctrl.menuShortName = '';
+    $ctrl.error = '';
 
-        // Save my info in service
-        SignUpService.saveMyInfo(reg.user.firstname, reg.user.lastname, reg.user.email, reg.user.phone, reg.user.menuShortName);
+    $ctrl.submit = function () {
 
-        reg.completed = true;
+        // Save my info in service up to phone number
+        SignUpService.saveMyInfo($ctrl.firstName, $ctrl.lastName, $ctrl.email, $ctrl.phone);
+
+        // Test menu Short name before saving it. If errors out, save the error
+        SignUpService.testShortName($ctrl.menuShortName).then(function() {
+            SignUpService.saveShortName($ctrl.menuShortName);
+            $ctrl.completed = true;
+        })
+        .catch(function (result) {
+            $ctrl.error = "No such menu number exists";
+            $ctrl.menuShortName = '';
+            $ctrl.completed = false;
+          })
+    }
+
+    $ctrl.valid = function() {
+        return ($ctrl.menuShortName !== '');
     };
 }
 
