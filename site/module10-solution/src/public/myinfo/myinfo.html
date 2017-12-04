@@ -1,1 +1,14 @@
-<h1>This is my info page!!</h1>
+
+<ng-if "!infoCtrl.isSignedUp">
+    Not Signed Up Yet. 
+    <a ui-sref="public.signUp">Sign up Now!</a>
+    
+</ng-if>
+<!-- <div class="menu-item-photo">
+    <div>{{$infoCtrl.menuItem.short_name}}</div>
+    <img class="img-responsive" width="250" height="150" ng-src="{{$ctrl.basePath}}/images/{{$ctrl.menuItem.short_name}}.jpg" alt="{{$ctrl.menuItem.name}}">
+</div>
+<h3 class="menu-item-title">{{$ctrl.menuItem.name}}</h3>
+<p class="menu-item-details">{{$ctrl.menuItem.description}}</p> -->
+
+      

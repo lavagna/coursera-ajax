@@ -8,6 +8,8 @@ SignUpService.$inject = ['$http', 'ApiPath'];
 function SignUpService($http, ApiPath) {
     var service = this;
 
+    service.signedUp = false;
+
     // My Info
     service.myInformation  = {
       firstname: '',
@@ -26,6 +28,7 @@ function SignUpService($http, ApiPath) {
 
     service.saveShortName = function (shortName) {
         service.myInformation.menuShortName = shortName;
+        service.signedUp = true;
     }
 
     service.testShortName = function (shortName) {
@@ -33,6 +36,11 @@ function SignUpService($http, ApiPath) {
             return response.data;
           });
     }
+
+    service.isSignedUp = function() {
+        return service.signedUp;
+    }
+
 }
 
 

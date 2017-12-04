@@ -43,9 +43,9 @@ function routeConfig ($stateProvider) {
     })
     .state('public.myInfo', {
       url: '/myInfo',
-      templateUrl: 'src/public/myinfo/myinfo.html'//,
-      // controller: 'MenuController',
-      // controllerAs: 'menuCtrl',
+      templateUrl: 'src/public/myinfo/myinfo.html',
+      controller: 'MyInfoController',
+      controllerAs: 'infoCtrl'
       // resolve: {
       //   menuCategories: ['MenuService', function (MenuService) {
       //     return MenuService.getCategories();
@@ -56,12 +56,7 @@ function routeConfig ($stateProvider) {
       url: '/signUp',
       templateUrl: 'src/public/signup/signup.html',
       controller: 'RegistrationController',
-      controllerAs: 'regCtrl'//,
-      // resolve: {
-      //   menuCategories: ['MenuService', function (MenuService) {
-      //     return MenuService.getCategories();
-      //   }]
-      // }
+      controllerAs: 'regCtrl'
     })   
     
     ;
