@@ -10,15 +10,12 @@
     Last Name: {{ infoCtrl.myInformation.lastname }} <br>
     Email: {{ infoCtrl.myInformation.email }} <br>
     Phone: {{ infoCtrl.myInformation.phone }} <br>
-    Favorite Food: {{ infoCtrl.myInformation.menuShortName }} <br>
-
+    Favorite Food ID: {{ infoCtrl.myInformation.menuShortName }} <br>
+    Favorite Food Name: {{ infoCtrl.myInformation.faveMenuTitle }} <br>
+    Favorite Food Description: {{ infoCtrl.myInformation.faveMenuDescription }} <br>
+    <img width="250" height="150" ng-src="{{infoCtrl.imagePath}}"> <br>
+    {{ infoCtrl.imagePath }} <br>         
 </span>
 
-<!-- <div class="menu-item-photo">
-    <div>{{$infoCtrl.menuItem.short_name}}</div>
-    <img class="img-responsive" width="250" height="150" ng-src="{{$ctrl.basePath}}/images/{{$ctrl.menuItem.short_name}}.jpg" alt="{{$ctrl.menuItem.name}}">
-</div>
-<h3 class="menu-item-title">{{$ctrl.menuItem.name}}</h3>
-<p class="menu-item-details">{{$ctrl.menuItem.description}}</p> -->
 
       

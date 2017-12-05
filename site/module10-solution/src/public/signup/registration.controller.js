@@ -7,8 +7,8 @@ angular.module('public')
 RegistrationController.$inject = ['SignUpService'];
 function RegistrationController(SignUpService) {
     var $ctrl = this;
-    $ctrl.firstName = '';
-    $ctrl.lastName = '';
+    $ctrl.firstname = '';
+    $ctrl.lastname = '';
     $ctrl.email = '';
     $ctrl.phone = '';
     $ctrl.menuShortName = '';
@@ -17,11 +17,10 @@ function RegistrationController(SignUpService) {
     $ctrl.submit = function () {
 
         // Save my info in service up to phone number
-        SignUpService.saveMyInfo($ctrl.firstName, $ctrl.lastName, $ctrl.email, $ctrl.phone);
+        SignUpService.saveMyInfo($ctrl.firstname, $ctrl.lastname, $ctrl.email, $ctrl.phone);
 
-        // Test menu Short name before saving it. If errors out, save the error
-        SignUpService.testShortName($ctrl.menuShortName).then(function() {
-            SignUpService.saveShortName($ctrl.menuShortName);
+        // getMenuItem also saves info in the service. If this promise errors out, save the error
+        SignUpService.getMenuItem($ctrl.menuShortName).then(function(response) {
             $ctrl.completed = true;
         })
         .catch(function (result) {

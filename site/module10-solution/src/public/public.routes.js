@@ -46,11 +46,6 @@ function routeConfig ($stateProvider) {
       templateUrl: 'src/public/myinfo/myinfo.html',
       controller: 'MyInfoController',
       controllerAs: 'infoCtrl'
-      // resolve: {
-      //   menuCategories: ['MenuService', function (MenuService) {
-      //     return MenuService.getCategories();
-      //   }]
-      // }
     })
     .state('public.signUp', {
       url: '/signUp',

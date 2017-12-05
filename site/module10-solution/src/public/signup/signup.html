@@ -8,7 +8,7 @@
 
         <!-- FIRST NAME -->
         <input type="text" name="firstname" placeholder="Enter first name"
-               ng-model="regCtrl.firstName"
+               ng-model="regCtrl.firstname"
                required
                minlength="2"
                ng-maxlength="20">
@@ -27,7 +27,7 @@
                 
         <!-- LAST NAME -->
         <input type="text" name="lastname" placeholder="Enter last name"
-            ng-model="regCtrl.lastName"
+            ng-model="regCtrl.lastname"
             required
             minlength="2"
             ng-maxlength="20">
@@ -74,19 +74,23 @@
         ng-disabled="regForm.$invalid"
         ng-click="regCtrl.submit()">Submit</button>
 
-        <div style="margin-top: 10px;">
+        <!-- <div style="margin-top: 10px;">
             Form valid? {{ regCtrl.regForm.$valid }}
-        </div>
+        </div> -->
     </form>
 </fieldset>
 
 <div id="info" ng-if="regCtrl.completed">
-Your information has been saved.
-First Name: {{ regCtrl.firstname}} <br>
-Last Name: {{ regCtrl.lastname}} <br>
-Email: {{ regCtrl.email}} <br>
-Phone: {{ regCtrl.phone }} <br>
-Favorite Menu: {{ regCtrl.menuShortName }} <br>
+Your information has been saved. <br>
+
+<!-- FOR TESTING!
+    
+    First Name: {{ regCtrl.firstname}} <br>
+    Last Name: {{ regCtrl.lastname}} <br>
+    Email: {{ regCtrl.email}} <br>
+    Phone: {{ regCtrl.phone }} <br>
+    Favorite Menu: {{ regCtrl.menuShortName }} <br> 
+-->
 </div>
 
 <div id="error" ng-if="!regCtrl.completed">

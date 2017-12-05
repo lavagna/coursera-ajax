@@ -16,7 +16,9 @@ function SignUpService($http, ApiPath) {
       lastname: '',
       email: '',
       phone: '' ,
-      menuShortName: ''
+      menuShortName: '',
+      faveMenuTitle: '',
+      faveMenuDescription: '',
     };
 
     // Save registration data
@@ -33,9 +35,14 @@ function SignUpService($http, ApiPath) {
         service.signedUp = true;
     }
 
-    // Test short name
-    service.testShortName = function (shortName) {
+    // Get menu item for a given short name. Save this in the service as the favorite
+    service.getMenuItem = function (shortName) {
         return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function(response) {
+            service.myInformation.menuShortName = shortName;
+            service.myInformation.faveMenuTitle = response.data.name;
+            service.myInformation.faveMenuDescription = response.data.description;
+
+            service.signedUp = true;
             return response.data;
           });
     }
@@ -49,6 +56,16 @@ function SignUpService($http, ApiPath) {
     service.getMyInfo = function() {
         return service.myInformation;
     }
+
+    service.saveFavoriteMenuItem = function(response) {
+        service.myInformation.faveMenuTitle = response.name;
+        service.myInformation.faveMenuDescription = response.description;
+        // service.myInformation.faveMenuImage = response.
+    }
+    // // Get detail information about an item based on short name
+    // service.getItemInfo = function(shortName) {
+
+    // }
 }
 
 
