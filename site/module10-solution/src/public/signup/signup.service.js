@@ -52,20 +52,25 @@ function SignUpService($http, ApiPath) {
         return service.signedUp;
     }
 
+    // Returns whether or not the short name passed is valid
+    service.isValidShortName = function(shortName) {
+        service.isValid = false;
+        $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function() {
+            service.isValid = true;
+        })
+        .catch(function (result) {
+            service.isValid = true;
+            service.error = "No such menu number exists";
+            service.completed = false;
+          })
+    }
+
     // Return registered data
     service.getMyInfo = function() {
         return service.myInformation;
     }
-
-    service.saveFavoriteMenuItem = function(response) {
-        service.myInformation.faveMenuTitle = response.name;
-        service.myInformation.faveMenuDescription = response.description;
-        // service.myInformation.faveMenuImage = response.
-    }
-    // // Get detail information about an item based on short name
-    // service.getItemInfo = function(shortName) {
-
-    // }
+    
+    
 }
 
 

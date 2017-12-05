@@ -4,7 +4,7 @@
 
 <fieldset>
     
-    <form name='regCtrl.regForm' novalidate>    <!-- turn off native browser validation -->
+    <form name='regForm' novalidate>    <!-- turn off native browser validation -->
 
         <!-- FIRST NAME -->
         <input type="text" name="firstname" placeholder="Enter first name"
@@ -65,7 +65,7 @@
         <!-- MENU ITEM -->
         <input type="text" name="menuShortName" placeholder="Favorite Menu (i.e. L16)"
             ng-model="regCtrl.menuShortName">
-        <span ng-if="!regCtrl.valid() && regForm.menuShortName.$touched">
+        <span ng-if="!regCtrl.isInvalidShortName && regForm.menuShortName.$touched">                
             No such menu number exists.
         </span>
         <br>

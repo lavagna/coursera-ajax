@@ -13,6 +13,7 @@ function RegistrationController(SignUpService) {
     $ctrl.phone = '';
     $ctrl.menuShortName = '';
     $ctrl.error = '';
+    $ctrl.isInvalidShortName = false;
 
     $ctrl.submit = function () {
 
@@ -30,9 +31,16 @@ function RegistrationController(SignUpService) {
           })
     }
 
-    $ctrl.valid = function() {
-        return ($ctrl.menuShortName !== '');
+    // Validation function returns true if the short name exists and is a valid one
+    $ctrl.isValidShortName = function() {
+        if (SignUpService.isValidShortName($ctrl.menuShortName)) {
+            $ctrl.isInvalidShortName = false;
+        }
+        $ctrl.isInvalidShortName = true;
+        // return ($ctrl.menuShortName !== '' && SignUpService.isValidShortName($ctrl.menuShortName));
     };
+
+    
 }
 
 })();
