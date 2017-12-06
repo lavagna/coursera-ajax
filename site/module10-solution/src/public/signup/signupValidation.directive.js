@@ -9,7 +9,7 @@ return {
         element.bind('blur', function (e) {
             if (!ngModel || !element.val()) return;
             var currentValue = element.val();
-            SignUpService.checkUniqueValue(currentValue)
+            SignUpService.verifyMenuItemExists(currentValue)
                 .then(function (unique) {
                     //Ensure value that being checked hasn't changed
                     //since the Ajax call was made
