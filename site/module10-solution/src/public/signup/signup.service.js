@@ -53,45 +53,7 @@ function SignUpService($http, ApiPath, $q, $timeout) {
     }
 
     // Returns whether or not the short name passed is valid
-    service.isValidShortName = function(shortName) {
-
-        var deferred = $q.defer();
-
-        var result = {
-            message: ""
-        };
-
-        // $timeout(function () {
-            // Check if short name is valid
-            $http.get(ApiPath + '/menu_items/' + shortName + '.json')
-                .then(function() {
-                    deferred.resolve(result);
-                })
-                .catch( function(errorResponse) {
-                    console.log("error message in Service::isValidShortName =" + errorResponse.message);
-                    //Stay away from cookies, Yaakov!";
-                    deferred.reject(result);
-                })
-        //   }, 1000);
-
-        return deferred.promise;
-    
-        // service.isValid = false;
-        // $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function() {
-        //     service.isValid = true;
-        // })
-        // .catch(function (result) {
-        //     service.isValid = false;
-        //     service.error = "No such menu number exists";
-        //     service.completed = false;
-        //     return service.isValid;
-            
-        // })
-        
-        // return service.isValid;
-    };
     service.checkUniqueValue = function (shortName) {
-        // if (!id) id = 0;
         return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(
             function (results) {
                 return results.data.status;

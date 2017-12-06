@@ -1,3 +1,5 @@
+// Reference: https://weblogs.asp.net/dwahlin/building-a-custom-angularjs-unique-value-directive
+
 angular.module('public')
 .directive('wcUnique', ['SignUpService', function (SignUpService) {
 return {
@@ -6,7 +8,6 @@ return {
     link: function (scope, element, attrs, ngModel) {
         element.bind('blur', function (e) {
             if (!ngModel || !element.val()) return;
-            // var keyProperty = scope.$eval(attrs.wcUnique);
             var currentValue = element.val();
             SignUpService.checkUniqueValue(currentValue)
                 .then(function (unique) {
