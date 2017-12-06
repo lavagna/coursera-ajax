@@ -64,9 +64,13 @@
 
         <!-- MENU ITEM -->
         <input type="text" name="menuShortName" placeholder="Favorite Menu (i.e. L16)"
-            ng-model="regCtrl.menuShortName">
-        <span ng-if="!regCtrl.isInvalidShortName && regForm.menuShortName.$touched">                
-            No such menu number exists.
+            ng-model="regCtrl.menuShortName" wc-unique required>
+        <!-- <span ng-if="!regCtrl.checkShortName() && regForm.menuShortName.$touched">  
+            No such menu NUMBER exists (from HTML)              
+        </span> -->
+
+        <span ng-if="regForm.menuShortName.$error.menuShortName && regForm.menuShortName.$touched">  
+            No such menu NUMBER exists (from HTML)    error: {{regForm.menuShortName.$error}}           
         </span>
         <br>
 

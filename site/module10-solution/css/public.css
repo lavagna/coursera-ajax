@@ -140,6 +140,12 @@ button {
   color: red;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
 /* END SIGN UP PAGE */
 
 
