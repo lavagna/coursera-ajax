@@ -56,7 +56,7 @@ function SignUpService($http, ApiPath, $q, $timeout) {
     service.verifyMenuItemExists = function (shortName) {
         return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(
             function (results) {
-                return results.data.status;
+                return true;
             });
     };
 
