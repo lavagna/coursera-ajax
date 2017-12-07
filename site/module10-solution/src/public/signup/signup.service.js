@@ -64,8 +64,6 @@ function SignUpService($http, ApiPath, $q, $timeout) {
     service.getMyInfo = function() {
         return service.myInformation;
     }
-    
-    
 }
 
 
